@@ -45,6 +45,18 @@ tbody tr:hover{background:#faf8f2}
 tbody tr.foc{background:#edf6f0}
 td.l,th.l{text-align:left;white-space:normal}
 .no{display:inline-block;min-width:32px;padding:0 6px;border-radius:5px;background:var(--tint);color:var(--g);font-weight:700}
+.cinfo{display:flex;align-items:center;gap:10px}
+.av{width:44px;height:44px;border-radius:8px;object-fit:cover;border:1px solid var(--line);background:#f2efe6;flex:none;cursor:pointer;transition:transform .15s,border-color .15s}
+.av:hover{transform:scale(1.06);border-color:var(--gold)}
+.av-ph{width:44px;height:44px;border-radius:8px;border:1px dashed var(--line);background:#faf8f2;color:var(--mut);font-size:12px;display:inline-flex;align-items:center;justify-content:center;flex:none;cursor:pointer;line-height:1.1;text-align:center;padding:2px}
+.av-ph:hover{border-color:var(--g);color:var(--g);background:var(--tint)}
+.live .av{width:38px;height:38px;border-radius:7px}
+.live .av-ph{width:38px;height:38px;border-radius:7px;font-size:11px}
+.pres-av{width:76px;height:76px;border-radius:12px;object-fit:cover;border:2px solid var(--gold);background:#ffffff22;flex:none;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+#imgModal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;padding:20px;z-index:105}
+#imgModal.show{display:flex}
+.ibox{background:#fff;border-radius:14px;max-width:440px;width:100%;padding:18px;text-align:center;box-shadow:0 12px 34px rgba(0,0,0,.35);border:1px solid var(--line)}
+.ibox img{max-width:100%;max-height:58vh;border-radius:10px;border:1px solid var(--line);object-fit:contain;background:#faf9f5}
 input.sc{width:68px;text-align:center;padding:3px 4px;border:1px solid var(--line);border-radius:5px;background:#fff}
 input.sc:focus,input.tx:focus,select:focus{outline:2px solid var(--gold);border-color:var(--gold)}
 input.bad{border-color:var(--bad);background:#fdeceb;color:var(--bad);font-weight:700}
@@ -86,7 +98,8 @@ input.tx{width:100%;padding:4px 8px;border:1px solid var(--line);border-radius:5
 #pp{display:none}
 @media print{
  body{background:#fff;color:#000;font-family:"TH Sarabun New","TH SarabunIT๙","TH SarabunPSK","Sarabun",sans-serif;font-size:16pt;line-height:1.35}
- .noprint,header,.bar,.live,#pres,#modal,#toast{display:none!important}
+ .noprint,header,.bar,.live,#pres,#modal,#imgModal,#toast,.av-ph{display:none!important}
+ .av{width:30px;height:30px;border:1px solid #999}
  .wrap{display:block;padding:0}
  .card{border:0;padding:0;overflow:visible}
  .pr{display:block;text-align:center;margin-bottom:14px;font-family:"TH Sarabun New","TH SarabunIT๙","TH SarabunPSK","Sarabun",sans-serif;font-size:16pt;line-height:1.35}
@@ -116,6 +129,9 @@ input.tx{width:100%;padding:4px 8px;border:1px solid var(--line);border-radius:5
 <div id="pp"></div>
 <div id="pres"></div>
 <div id="modal" class="noprint"><div class="mbox"><h3 id="mTitle">ยืนยันรายการ</h3><p id="mBody"></p><div class="row" style="justify-content:flex-end;margin:0"><button id="mCancel" onclick="closeModal()">ยกเลิก</button><button id="mOk" class="pri">ตกลง</button></div></div></div>
+<div id="imgModal" class="noprint" onclick="if(event.target===this)closeImgModal()"><div class="ibox"><h3 id="imTitle" style="margin:0 0 10px;color:var(--g)"></h3><img id="imView" src="" alt=""><div class="row" style="justify-content:center;margin:12px 0 0"><button class="pri" id="imChg">เปลี่ยนรูปภาพ</button><button id="imDel" style="color:var(--bad)">ลบรูป</button><button onclick="closeImgModal()">ปิด</button></div></div></div>
+<input id="imgInp" type="file" accept="image/*" hidden onchange="onImgFile(this)">
+<input id="batchImgInp" type="file" accept="image/*" multiple hidden onchange="onBatchImgFiles(this)">
 <div id="toast" class="noprint"></div>
 
 <script>
@@ -182,6 +198,7 @@ function fresh(k,customTitle,customShort){
   fin:p?"five":"all",
   n,
   names:Array(n).fill(""),
+  imgs:Array(n).fill(""),
   nj:5,
   jp:rng(15).map(()=>""),
   jroles:rng(15).map(()=>""),
@@ -233,6 +250,8 @@ function fix(d,k){
  d.act.forEach(row=>{while(row.length<d.cr.length)row.push(1)});
  while(d.adv.length<5)d.adv.push(0);
  while(d.names.length<d.n)d.names.push("");
+ if(!Array.isArray(d.imgs))d.imgs=[];
+ while(d.imgs.length<d.n)d.imgs.push("");
 }
 
 function initState(){
@@ -432,7 +451,15 @@ function calc(a,b,lite,forceElig){
  return{r,s,fl};
 }
 
-const nm=i=>D().names[i]?esc(D().names[i]):'<span style="color:var(--mut)">(ยังไม่ระบุชื่อ)</span>';
+const imgOf=i=>(D().imgs&&D().imgs[i])||"";
+const avHtml=(i,noPh)=>{
+ const src=imgOf(i);
+ if(src)return`<img class="av" src="${src}" alt="หมายเลข ${i+1}" title="คลิกเพื่อดูรูปขยาย / เปลี่ยนรูป" onclick="openImgModal(${i})">`;
+ if(noPh)return"";
+ return`<span class="av-ph noprint" title="คลิกเพื่ออัปโหลดรูปภาพ หมายเลข ${i+1}" onclick="pickImg(${i})">+ รูป</span>`;
+};
+const nmText=i=>D().names[i]?esc(D().names[i]):'<span style="color:var(--mut)">(ยังไม่ระบุชื่อ)</span>';
+const nm=i=>`<div class="cinfo">${avHtml(i)}<span>${nmText(i)}</span></div>`;
 const allDone=()=>calc().s.every(x=>x.cnt>=x.need&&x.need>0);
 const rv=()=>NR()>1&&S.rv>=0&&S.rv<NR()?S.rv:-1;
 const rr=()=>rv()<0?[0,NR()-1]:[rv(),rv()];
@@ -815,9 +842,16 @@ function renderMain(){
   </div>
 
   <div class="sec">
-   <h3>7. รายชื่อผู้เข้าประกวด / หน่วยงานที่ส่งเข้าประกวด (${d.n} หมายเลข)</h3>
-   <table><thead><tr><th style="width:80px">หมายเลข</th><th class="l">ชื่อผู้เข้าประกวด / หมู่บ้าน / หน่วยงานที่ส่งเข้าประกวด</th></tr></thead><tbody>
-   ${d.names.slice(0,d.n).map((x,i)=>`<tr><td><span class="no">${i+1}</span></td><td class="l"><input class="tx" data-n="${i}" value="${esc(x)}" placeholder="ชื่อผู้เข้าประกวด หรือหน่วยงานที่ส่งเข้าประกวด"></td></tr>`).join("")}
+   <div class="row" style="justify-content:space-between;margin-top:0">
+    <h3 style="margin:0">7. รายชื่อและรูปภาพผู้เข้าประกวด / หน่วยงานที่ส่งเข้าประกวด (${d.n} หมายเลข)</h3>
+    <div class="row" style="margin:0">
+     <button class="pri" onclick="$('#batchImgInp').click()">อัปโหลดหลายรูปพร้อมกัน (เรียงหมายเลข 1-${d.n})</button>
+     ${d.imgs&&d.imgs.slice(0,d.n).some(Boolean)?`<button style="color:var(--bad)" onclick="clearAllImgs()">ลบรูปภาพทั้งหมด</button>`:""}
+    </div>
+   </div>
+   <p class="note">อัปโหลดรูปภาพของผู้เข้าประกวดหรือกระทงแต่ละหมายเลขได้ทั้งจากตารางนี้ หรือกดปุ่ม <b>"+ รูป"</b> ในหน้ากรอกคะแนน/หน้าผลคะแนน · ระบบย่อขนาดภาพอัตโนมัติเพื่อบันทึกในเครื่องและแสดงผลในทุกหน้าของโปรแกรม</p>
+   <table><thead><tr><th style="width:80px">หมายเลข</th><th style="width:210px">รูปภาพประจำหมายเลข</th><th class="l">ชื่อผู้เข้าประกวด / หมู่บ้าน / หน่วยงานที่ส่งเข้าประกวด</th></tr></thead><tbody>
+   ${d.names.slice(0,d.n).map((x,i)=>`<tr><td><span class="no">${i+1}</span></td><td><div class="row" style="justify-content:center;margin:0;gap:6px">${avHtml(i)}<button style="font-size:14px;padding:2px 8px" onclick="pickImg(${i})">${imgOf(i)?"เปลี่ยนรูป":"อัปโหลดรูป"}</button>${imgOf(i)?`<button style="font-size:14px;padding:2px 6px;color:var(--bad)" onclick="delImg(${i})">ลบ</button>`:""}</div></td><td class="l"><input class="tx" data-n="${i}" value="${esc(x)}" placeholder="ชื่อผู้เข้าประกวด หรือหน่วยงานที่ส่งเข้าประกวด"></td></tr>`).join("")}
    </tbody></table>
   </div>
 
@@ -839,7 +873,7 @@ function renderLive(){
   }
  });
  if(s.slice(0,CUR_PRIZES().length).some(x=>x.tie))h+=`<div class="warn">มีคะแนนเท่ากันในอันดับรางวัล <button style="font-size:13px;padding:1px 7px" onclick="S.tab='res';render()">ไปหน้าตารางผลคะแนนเพื่อชี้ขาดลำดับ</button></div>`;
- h+=`<ul>`+s.filter(x=>x.cnt).map(x=>`<li><span class="rk">${x.rank}</span><div class="nm"><b>หมายเลข ${x.i+1}</b>${x.tie?' <span class="tie">เท่ากัน</span>':""}${x.rawTie&&x.tbo?` <small style="color:var(--ok);font-weight:600">(ชี้ขาดแล้ว)</small>`:""}<div class="sm">${x.out?"ตกรอบ · ":""}${nm(x.i)} · ครบ ${x.cnt}/${x.need}</div></div><b class="sc2">${x.sum}</b></li>`).join("")+`</ul>`;
+ h+=`<ul>`+s.filter(x=>x.cnt).map(x=>`<li><span class="rk">${x.rank}</span>${avHtml(x.i)}<div class="nm"><b>หมายเลข ${x.i+1}</b>${x.tie?' <span class="tie">เท่ากัน</span>':""}${x.rawTie&&x.tbo?` <small style="color:var(--ok);font-weight:600">(ชี้ขาดแล้ว)</small>`:""}<div class="sm">${x.out?"ตกรอบ · ":""}${nmText(x.i)} · ครบ ${x.cnt}/${x.need}</div></div><b class="sc2">${x.sum}</b></li>`).join("")+`</ul>`;
  if(!s.some(x=>x.cnt))h+=`<p class="note">ยังไม่มีคะแนน เริ่มกรอกที่แท็บประธานกรรมการ หรือกรอกรวมทุกกรรมการ</p>`;
  if(d.hasVote){
   const T=rng(d.n).map(i=>vtot(i,-1)),mx=Math.max(0,...T);
@@ -847,7 +881,7 @@ function renderLive(){
    let t=rng(d.n).filter(i=>T[i]==mx);
    const picked=t.length>1&&d.votePick>=0&&t.includes(d.votePick);
    if(picked)t=[d.votePick];
-   h+=`<p class="note" style="margin-top:10px;padding-top:8px;border-top:1px dashed var(--line)"><b>${esc(d.voteTab||"ขวัญใจประชาชน")}นำอยู่:</b> หมายเลข ${t.map(i=>i+1).join(", ")} (${mx} ${esc(d.vu||"ดอก")})${t.length>1?' <span class="tie">เท่ากัน</span>':""}${picked?' <small style="color:var(--ok);font-weight:600">(ชี้ขาดแล้ว)</small>':""}</p>`;
+   h+=`<div class="note" style="margin-top:10px;padding-top:8px;border-top:1px dashed var(--line);display:flex;align-items:center;gap:8px;flex-wrap:wrap">${t.length==1?avHtml(t[0],true):""}<div><b>${esc(d.voteTab||"ขวัญใจประชาชน")}นำอยู่:</b> หมายเลข ${t.map(i=>i+1).join(", ")} (${mx} ${esc(d.vu||"ดอก")})${t.length>1?' <span class="tie">เท่ากัน</span>':""}${picked?' <small style="color:var(--ok);font-weight:600">(ชี้ขาดแล้ว)</small>':""}</div></div>`;
   }
  }
  $("#live").innerHTML=h;
@@ -961,8 +995,97 @@ document.addEventListener("keydown",e=>{
   if(t.id=="vn"){e.preventDefault();$("#vq").focus();$("#vq").select()}
   else if(t.id=="vq"){e.preventDefault();addV()}
  }
- if(e.key=="Escape"){presClose();closeModal()}
+ if(e.key=="Escape"){presClose();closeModal();closeImgModal()}
 });
+
+let curImgIdx=-1;
+function pickImg(i){
+ curImgIdx=i;
+ const inp=$("#imgInp");
+ inp.value="";
+ inp.click();
+}
+function openImgModal(i){
+ const src=imgOf(i);
+ if(!src){pickImg(i);return}
+ curImgIdx=i;
+ $("#imTitle").textContent=`หมายเลข ${i+1}${D().names[i]?" · "+D().names[i]:""}`;
+ $("#imView").src=src;
+ $("#imChg").onclick=()=>{closeImgModal();pickImg(i)};
+ $("#imDel").onclick=()=>{closeImgModal();delImg(i)};
+ $("#imgModal").classList.add("show");
+}
+function closeImgModal(){$("#imgModal").classList.remove("show")}
+function delImg(i){
+ const d=D();
+ if(!d.imgs)d.imgs=[];
+ d.imgs[i]="";
+ save();render();
+ toast(`ลบรูปภาพ หมายเลข ${i+1} เรียบร้อย`);
+}
+function clearAllImgs(){
+ askModal("ยืนยันการลบรูปภาพทั้งหมด",`ต้องการลบรูปภาพผู้เข้าประกวดทั้งหมดของ "${CUR_TITLE()}" หรือไม่?`,()=>{
+  const d=D();
+  d.imgs=Array(d.n).fill("");
+  save();render();
+  toast("ลบรูปภาพทั้งหมดเรียบร้อย");
+ });
+}
+function readAndCompress(file,cb){
+ const r=new FileReader();
+ r.onload=e=>{
+  const im=new Image();
+  im.onload=()=>{
+   const max=320;
+   let w=im.width,h=im.height;
+   if(w>max||h>max){if(w>h){h=Math.round(h*max/w);w=max}else{w=Math.round(w*max/h);h=max}}
+   const cv=document.createElement("canvas");
+   cv.width=w;cv.height=h;
+   const ctx=cv.getContext("2d");
+   ctx.fillStyle="#ffffff";
+   ctx.fillRect(0,0,w,h);
+   ctx.drawImage(im,0,0,w,h);
+   cb(cv.toDataURL("image/jpeg",0.82));
+  };
+  im.onerror=()=>cb(e.target.result);
+  im.src=e.target.result;
+ };
+ r.readAsDataURL(file);
+}
+function onImgFile(inp){
+ const f=inp.files&&inp.files[0];
+ if(!f||curImgIdx<0)return;
+ const idx=curImgIdx;
+ readAndCompress(f,dataUrl=>{
+  const d=D();
+  if(!Array.isArray(d.imgs))d.imgs=[];
+  while(d.imgs.length<d.n)d.imgs.push("");
+  d.imgs[idx]=dataUrl;
+  save();render();
+  toast(`อัปโหลดรูปภาพ หมายเลข ${idx+1} เรียบร้อย`);
+ });
+ inp.value="";
+}
+function onBatchImgFiles(inp){
+ const files=inp.files?[...inp.files]:[];
+ if(!files.length)return;
+ files.sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true,sensitivity:"base"}));
+ const d=D(),lim=Math.min(files.length,d.n);
+ if(!Array.isArray(d.imgs))d.imgs=[];
+ while(d.imgs.length<d.n)d.imgs.push("");
+ let done=0;
+ files.slice(0,lim).forEach((f,idx)=>{
+  readAndCompress(f,dataUrl=>{
+   d.imgs[idx]=dataUrl;
+   done++;
+   if(done===lim){
+    save();render();
+    toast(`อัปโหลดรูปภาพเรียบร้อย ${lim} หมายเลข (1-${lim})`);
+   }
+  });
+ });
+ inp.value="";
+}
 
 function addV(){
  const d=D(),i=parseInt($("#vn").value)-1,q=parseFloat($("#vq").value),r=Math.min(d.vrd||0,VNR()-1);
@@ -1002,7 +1125,13 @@ function clearJudge(j,rd){
 }
 function setNJ(v){D().nj=Math.max(1,Math.min(15,parseInt(v)||1));S.tab="set";save();render()}
 function setNR(v){D().nr=Math.max(1,Math.min(5,parseInt(v)||1));S.rd=0;S.rv=-1;S.tab="set";save();render()}
-function setN(v){const n=Math.max(1,Math.min(100,parseInt(v)||1)),d=D();while(d.names.length<n)d.names.push("");d.n=n;save();render()}
+function setN(v){
+ const n=Math.max(1,Math.min(100,parseInt(v)||1)),d=D();
+ while(d.names.length<n)d.names.push("");
+ if(!Array.isArray(d.imgs))d.imgs=[];
+ while(d.imgs.length<n)d.imgs.push("");
+ d.n=n;save();render();
+}
 function addCriterion(){
  const d=D(),idx=d.cr.length+1;
  if(idx>10){toast("รองรับสูงสุด 10 หัวข้อเกณฑ์",true);return}
@@ -1110,15 +1239,16 @@ function renderPres(){
  if(!allDone())h+=`<div class="warn" style="color:#222">กรรมการกรอกคะแนนยังไม่ครบ ผลนี้ยังไม่ใช่ผลสุดท้าย</div>`;
  if(top.some(x=>x.tie))h+=`<div class="warn" style="color:#222">มีคะแนนเท่ากันในอันดับที่ได้รับรางวัล ให้คณะกรรมการวินิจฉัยก่อนประกาศ</div>`;
  prizes.forEach((pName,p)=>{
-  const x=top[p],open=S.pstep>=pz-p&&x&&x.cnt>0;
-  h+=`<div class="slot ${open?"open":""}"><span>${esc(pName)}${open?`<small>หมายเลข ${x.i+1}${d.names[x.i]?" · "+esc(d.names[x.i]):""}</small>`:""}</span><span>${open?`หมายเลข ${x.i+1} · ${x.sum} คะแนน`:"?"}</span></div>`;
+  const x=top[p],open=S.pstep>=pz-p&&x&&x.cnt>0,im=open?imgOf(x.i):"";
+  h+=`<div class="slot ${open?"open":""}"><span style="display:flex;align-items:center;gap:14px;text-align:left">${im?`<img class="pres-av" src="${im}" alt="">`:""}<span>${esc(pName)}${open?`<small>หมายเลข ${x.i+1}${d.names[x.i]?" · "+esc(d.names[x.i]):""}</small>`:""}</span></span><span>${open?`หมายเลข ${x.i+1} · ${x.sum} คะแนน`:"?"}</span></div>`;
  });
  if(d.hasVote&&S.pstep>=pz){
   const T=rng(d.n).map(i=>vtot(i,-1)),mx=Math.max(0,...T);
   if(mx>0){
    let t=rng(d.n).filter(i=>T[i]==mx);
    if(t.length>1&&d.votePick>=0&&t.includes(d.votePick))t=[d.votePick];
-   h+=`<div class="slot open"><span>${esc(d.voteTab||"ขวัญใจประชาชน")}${t.length==1&&d.names[t[0]]?`<small>${esc(d.names[t[0]])}</small>`:""}</span><span>หมายเลข ${t.map(i=>i+1).join(", ")} · ${mx} ${esc(d.vu||"ดอก")}</span></div>`;
+   const vim=t.length==1?imgOf(t[0]):"";
+   h+=`<div class="slot open"><span style="display:flex;align-items:center;gap:14px;text-align:left">${vim?`<img class="pres-av" src="${vim}" alt="">`:""}<span>${esc(d.voteTab||"ขวัญใจประชาชน")}${t.length==1&&d.names[t[0]]?`<small>${esc(d.names[t[0]])}</small>`:""}</span></span><span>หมายเลข ${t.map(i=>i+1).join(", ")} · ${mx} ${esc(d.vu||"ดอก")}</span></div>`;
   }
  }
  h+=`<div class="row" style="margin-top:8px">`;
