@@ -1,0 +1,1323 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>รวมคะแนนประกวด อบต.หนองปลาหมอ ประจำปีงบประมาณ ๒๕๗๐</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+ --bg:#f6f4ee;--ink:#1c2824;--mut:#5f6b66;--line:#d8d3c4;
+ --g:#1f4d3f;--g-dark:#14362c;--gold:#b97f12;--gold-bg:#fff8e6;
+ --card:#fff;--bad:#b3261e;--ok:#17703f;--tint:#eef3ef;
+ --sarabun:"TH Sarabun New","TH SarabunIT๙","TH SarabunPSK","Sarabun","Noto Sans Thai",Tahoma,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.5 var(--sarabun)}
+header{background:var(--g);color:#fff;padding:12px 20px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+header h1{font-size:24px;margin:0;flex:1 1 320px;font-weight:700;line-height:1.25}
+header small{display:block;font-weight:400;opacity:.88;font-size:16px;margin-top:2px}
+button,select,input{font:inherit}
+button,select{border:1px solid var(--line);background:#fff;color:var(--ink);padding:4px 12px;border-radius:6px;cursor:pointer;transition:background .15s,border-color .15s}
+button:hover{border-color:var(--g);background:var(--tint)}
+button.pri{background:var(--g);color:#fff;border-color:var(--g);font-weight:600}
+button.pri:hover{background:var(--g-dark)}
+button.gold{border-color:var(--gold);color:#7c5205;background:var(--gold-bg);font-weight:600}
+header button{background:transparent;color:#fff;border-color:#ffffff66}
+header button:hover{background:#ffffff22;border-color:#fff}
+header button.on{background:#fff;color:var(--g);font-weight:700;border-color:#fff}
+.bar{display:flex;flex-wrap:wrap;gap:6px;padding:10px 20px;border-bottom:1px solid var(--line);background:#fff;align-items:center}
+.bar button.on{background:var(--g);color:#fff;border-color:var(--g);font-weight:600}
+.chip{font-size:14px;margin-left:6px;padding:0 7px;border-radius:10px;background:#e8e4d6;color:var(--mut);font-weight:600}
+.chip.ok{background:#d7efe0;color:var(--ok)}
+.bar button.on .chip{background:#ffffff33;color:#fff}
+.wrap{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:18px;padding:18px 20px;align-items:start}
+@media(max-width:1024px){.wrap{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto}
+h2{font-size:21px;margin:0 0 8px;color:var(--g)}
+h3{font-size:18px;margin:12px 0 6px;color:var(--g)}
+table{border-collapse:collapse;width:100%}
+th,td{padding:6px 8px;border-bottom:1px solid #ece8dc;text-align:center;white-space:nowrap}
+th{font-size:15px;color:var(--mut);font-weight:600;position:sticky;top:0;background:#faf9f5;z-index:1}
+tbody tr:hover{background:#faf8f2}
+tbody tr.foc{background:#edf6f0}
+td.l,th.l{text-align:left;white-space:normal}
+.no{display:inline-block;min-width:32px;padding:0 6px;border-radius:5px;background:var(--tint);color:var(--g);font-weight:700}
+input.sc{width:68px;text-align:center;padding:3px 4px;border:1px solid var(--line);border-radius:5px;background:#fff}
+input.sc:focus,input.tx:focus,select:focus{outline:2px solid var(--gold);border-color:var(--gold)}
+input.bad{border-color:var(--bad);background:#fdeceb;color:var(--bad);font-weight:700}
+input.tx{width:100%;padding:4px 8px;border:1px solid var(--line);border-radius:5px;background:#fff}
+.tot{font-weight:700;color:var(--g)}
+.note{color:var(--mut);font-size:16px;margin:6px 0}
+.live li{display:flex;gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid #ece8dc;list-style:none}
+.live ul{margin:0;padding:0}
+.rk{width:30px;height:30px;border-radius:50%;background:var(--tint);color:var(--g);font-weight:700;display:grid;place-items:center;flex:none}
+.live li:nth-child(-n+3) .rk{background:var(--gold);color:#fff}
+.live .nm{flex:1;min-width:0;line-height:1.25}
+.live .sm{font-size:15px;color:var(--mut)}
+.live b.sc2{font-size:20px;color:var(--g)}
+.tie{color:var(--bad);font-size:14px;font-weight:700;background:#fdeceb;padding:0 6px;border-radius:4px}
+.warn{background:#fff4d8;border:1px solid #ecd48a;border-radius:8px;padding:6px 10px;margin:8px 0;font-size:16px}
+.warn.ok{background:#e8f3ec;border-color:#9cc7ad;color:#114b2b}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:8px 0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin:8px 0}
+.fbox{background:#faf9f5;border:1px solid #e6e2d6;border-radius:8px;padding:10px 12px}
+.fbox label{display:block;font-size:15px;color:var(--mut);font-weight:600;margin-bottom:3px}
+.sec{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:12px 0;background:#fcfbf8}
+#pres{position:fixed;inset:0;background:radial-gradient(circle at center,#183d31 0%,#0d211a 100%);color:#fff;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;z-index:90;text-align:center;overflow-y:auto}
+#pres.show{display:flex}
+#pres h1{font-size:38px;margin:0}
+#pres .sub{font-size:20px;opacity:.85;margin-top:-6px}
+.slot{width:min(780px,92vw);border:2px solid #ffffff44;border-radius:14px;padding:12px 20px;font-size:28px;display:flex;justify-content:space-between;gap:16px;align-items:center;background:#ffffff0a}
+.slot.open{border-color:var(--gold);background:#ffffff18;box-shadow:0 0 20px rgba(185,127,18,.35)}
+.slot small{display:block;font-size:20px;opacity:.85;text-align:left}
+#pres button{font-size:22px;padding:8px 24px}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
+#modal.show{display:flex}
+.mbox{background:#fff;border-radius:12px;max-width:460px;width:100%;padding:18px 20px;box-shadow:0 10px 30px rgba(0,0,0,.25);border:1px solid var(--line)}
+.mbox h3{margin:0 0 8px;color:var(--ink)}
+.mbox p{margin:0 0 16px;color:var(--mut);white-space:pre-line}
+#toast{position:fixed;bottom:18px;right:18px;background:var(--g);color:#fff;padding:8px 16px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.2);display:none;z-index:110;font-weight:600}
+#toast.bad{background:var(--bad)}
+#toast.show{display:block}
+.pr{display:none}
+#pp{display:none}
+@media print{
+ body{background:#fff;color:#000;font-family:"TH Sarabun New","TH SarabunIT๙","TH SarabunPSK","Sarabun",sans-serif;font-size:16pt;line-height:1.35}
+ .noprint,header,.bar,.live,#pres,#modal,#toast{display:none!important}
+ .wrap{display:block;padding:0}
+ .card{border:0;padding:0;overflow:visible}
+ .pr{display:block;text-align:center;margin-bottom:14px;font-family:"TH Sarabun New","TH SarabunIT๙","TH SarabunPSK","Sarabun",sans-serif;font-size:16pt;line-height:1.35}
+ table,th,td{font-family:"TH Sarabun New","TH SarabunIT๙","TH SarabunPSK","Sarabun",sans-serif;font-size:16pt;color:#000;border:1px solid #000;padding:4px 6px}
+ th{background:#f3f3f3!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .no{background:transparent;color:#000;padding:0}
+ .tot{color:#000}
+ .sig{display:flex;flex-wrap:wrap;gap:34px 16px;justify-content:space-around;margin-top:42px;font-size:16pt}
+ .sig div{text-align:center;min-width:220px}
+ body.sheets>*{display:none!important}
+ body.sheets>#pp{display:block!important}
+}
+</style>
+<style id="sheetcss"></style>
+</head>
+<body>
+<header class="noprint">
+ <h1 id="hdrTitle">โปรแกรมรวมคะแนนการประกวด<small id="hdrSub">องค์การบริหารส่วนตำบลหนองปลาหมอ · งานประเพณีลอยกระทง ๒๔ พฤศจิกายน ๒๕๖๙</small></h1>
+ <span id="sw"></span>
+ <button onclick="presOpen()">โหมดประกาศผลบนจอ</button>
+</header>
+<div class="bar noprint" id="nav"></div>
+<div class="wrap">
+ <div class="card" id="main"></div>
+ <div class="card live noprint" id="live"></div>
+</div>
+<div id="pp"></div>
+<div id="pres"></div>
+<div id="modal" class="noprint"><div class="mbox"><h3 id="mTitle">ยืนยันรายการ</h3><p id="mBody"></p><div class="row" style="justify-content:flex-end;margin:0"><button id="mCancel" onclick="closeModal()">ยกเลิก</button><button id="mOk" class="pri">ตกลง</button></div></div></div>
+<div id="toast" class="noprint"></div>
+
+<script>
+const DEF_CR={
+ nop:["ความสวยงามของใบหน้า รูปร่าง ผิวพรรณและบุคลิกภาพ","กิริยามารยาท การเดิน การยืนและความมั่นใจ","การแต่งกายสวยงาม เหมาะสม ถูกต้องตามระเบียบ","การตอบคำถามและปฏิภาณไหวพริบ","ความสามารถพิเศษ"],
+ kra:["รูปทรงสวยงาม","วัสดุธรรมชาติ (ไม่ใช้กระดาษ, โฟม)","เอกลักษณ์ความเป็นไทย","ความประณีต","ขนาดและสัดส่วน, ทดสอบลอยน้ำได้"]
+};
+const DEF_SH={
+ nop:["ใบหน้า/บุคลิก","กิริยา/มั่นใจ","แต่งกาย","ตอบคำถาม","ความสามารถพิเศษ"],
+ kra:["รูปทรง","วัสดุธรรมชาติ","เอกลักษณ์ไทย","ความประณีต","ขนาด/ลอยน้ำ"]
+};
+const DEF_TITLE={nop:"การประกวดนางนพมาศ",kra:"การประกวดกระทงประเภทสวยงาม"};
+const DEF_NAME={nop:"นางนพมาศ",kra:"กระทง"};
+const DEF_NAMEF={nop:"ประกวดนางนพมาศ",kra:"ประกวดกระทงประเภทสวยงาม"};
+const DEF_PRIZE=["ชนะเลิศ","รองชนะเลิศอันดับ ๑","รองชนะเลิศอันดับ ๒"];
+
+function defCfg(){
+ return {
+  appTitle:"โปรแกรมรวมคะแนนการประกวด",
+  org:"องค์การบริหารส่วนตำบลหนองปลาหมอ",
+  loc:"อำเภอโนนศิลา จังหวัดขอนแก่น",
+  proj:"โครงการจัดงานประเพณีวันลอยกระทง",
+  ev:"งานประเพณีลอยกระทง",
+  fy:"๒๕๗๐",
+  dtShort:"๒๔ พฤศจิกายน ๒๕๖๙",
+  dtLong:"วันที่ 24 เดือน พฤศจิกายน พ.ศ. 2569",
+  pFont:"TH Sarabun New",
+  pSize:16,
+  pAutoFit:false,
+  keys:["nop","kra"]
+ };
+}
+
+const thn=n=>String(n).replace(/\d/g,x=>"๐๑๒๓๔๕๖๗๘๙"[x]);
+const rng=n=>Array.from({length:Math.max(0,n)},(_,i)=>i);
+const KEY="nongplamo-score-2569";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fm=v=>Math.round((+v||0)*100)/100;
+
+let S;
+try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+
+function fresh(k,customTitle,customShort){
+ const p=k=="nop",isKra=k=="kra",n=p?13:20;
+ const cr=DEF_CR[k]?[...DEF_CR[k]]:["เกณฑ์ข้อที่ 1","เกณฑ์ข้อที่ 2","เกณฑ์ข้อที่ 3","เกณฑ์ข้อที่ 4","เกณฑ์ข้อที่ 5"];
+ const sh=DEF_SH[k]?[...DEF_SH[k]]:["หัวข้อ 1","หัวข้อ 2","หัวข้อ 3","หัวข้อ 4","หัวข้อ 5"];
+ return{
+  v2:1,v3:1,v4:1,v5:1,
+  title:customTitle||DEF_TITLE[k]||"การประกวด",
+  shortName:customShort||DEF_NAME[k]||"ประกวด",
+  docTitle:DEF_NAMEF[k]||(customTitle||"การประกวด").replace(/^การ/,""),
+  cr,sh,
+  prizes:[...DEF_PRIZE],
+  hasVote:p,
+  voteTitle:"รางวัลขวัญใจประชาชน (นับจากยอดซื้อดอกไม้)",
+  voteTab:"ขวัญใจประชาชน",
+  vu:"ดอก",
+  vnr:1,
+  vrd:0,
+  vrv:-1,
+  vlog:[],
+  dup:"avg",
+  fin:p?"five":"all",
+  n,
+  names:Array(n).fill(""),
+  nj:5,
+  jp:rng(15).map(()=>""),
+  jroles:rng(15).map(()=>""),
+  sc:{},
+  votes:{},
+  tb:-1,
+  tot:false,
+  nr:p?3:1,
+  adv:p?[0,5,0,0,0]:[0,0,0,0,0],
+  advTie:"all",
+  manElig:{},
+  tbOrder:{},
+  votePick:-1,
+  act:p?[[1,1,1,0,0],[1,1,1,0,0],[0,0,0,1,1]]:rng(5).map(()=>[1,1,1,1,1])
+ };
+}
+
+function fix(d,k){
+ if(!d)return;
+ if(!d.act){d.nr=3;d.adv=[0,0];d.act=rng(3).map(()=>[1,1,1,1,1]);const o={};for(const x in d.sc)o[x.split("_").length==2?"0_"+x:x]=d.sc[x];d.sc=o}
+ if(!d.v2){d.v2=1;d.fin="all";if(k=="nop"){d.nr=3;d.adv=[0,5];d.act=[[1,1,1,0,0],[1,1,1,0,0],[0,0,0,1,1]];d.fin="last"}}
+ if(!d.v3){d.v3=1;d.dup="avg";if(k=="nop"&&d.fin=="last")d.fin="five"}
+ if(!d.vlog){d.vlog=[];d.vu="ดอก";for(const i in (d.votes||{})){const q=parseFloat(d.votes[i]);if(q>0)d.vlog.push({i:+i,q,r:0})}d.votes={}}
+ if(!d.v4){d.v4=1;d.jp=(d.judges||[]).map(x=>/^กรรมการคนที่ /.test(x)?"":x);while(d.jp.length<15)d.jp.push("")}
+ if(!Array.isArray(d.cr)||!d.cr.length)d.cr=DEF_CR[k]?[...DEF_CR[k]]:["เกณฑ์ข้อที่ 1","เกณฑ์ข้อที่ 2","เกณฑ์ข้อที่ 3","เกณฑ์ข้อที่ 4","เกณฑ์ข้อที่ 5"];
+ if(!Array.isArray(d.sh)||d.sh.length<d.cr.length){
+  const base=DEF_SH[k]||[];
+  d.sh=d.cr.map((x,i)=>d.sh&&d.sh[i]?d.sh[i]:(base[i]||x.slice(0,14)));
+ }
+ if(!d.title)d.title=DEF_TITLE[k]||"การประกวด";
+ if(!d.shortName)d.shortName=DEF_NAME[k]||d.title.replace(/^การประกวด/,"")||"ประกวด";
+ if(!d.docTitle)d.docTitle=DEF_NAMEF[k]||d.title.replace(/^การ/,"");
+ if(!Array.isArray(d.prizes)||!d.prizes.length)d.prizes=[...DEF_PRIZE];
+ if(d.hasVote===undefined)d.hasVote=(k=="nop");
+ if(!d.voteTitle)d.voteTitle="รางวัลขวัญใจประชาชน (นับจากยอดซื้อดอกไม้)";
+ if(!d.voteTab)d.voteTab="ขวัญใจประชาชน";
+ if(!d.vnr||d.vnr<1)d.vnr=1;
+ if(d.vrd===undefined||d.vrd>=d.vnr)d.vrd=0;
+ if(d.vrv===undefined)d.vrv=-1;
+ d.vlog.forEach(e=>{if(e.r===undefined||e.r===null)e.r=0});
+ if(!d.advTie)d.advTie="all";
+ if(!d.manElig||typeof d.manElig!=="object")d.manElig={};
+ if(!d.tbOrder||typeof d.tbOrder!=="object")d.tbOrder={};
+ if(d.votePick===undefined)d.votePick=-1;
+ if(!Array.isArray(d.jroles))d.jroles=rng(15).map(()=>"");
+ while(d.jroles.length<15)d.jroles.push("");
+ while(d.jp.length<15)d.jp.push("");
+ while(d.act.length<5)d.act.push(rng(d.cr.length).map(()=>1));
+ d.act.forEach(row=>{while(row.length<d.cr.length)row.push(1)});
+ while(d.adv.length<5)d.adv.push(0);
+ while(d.names.length<d.n)d.names.push("");
+}
+
+function initState(){
+ if(!S||!S.d)S={cur:"nop",tab:"j0",d:{nop:fresh("nop"),kra:fresh("kra")},pstep:0,cfg:defCfg()};
+ if(!S.cfg)S.cfg=defCfg();
+ const df=defCfg();
+ for(const k in df)if(S.cfg[k]===undefined)S.cfg[k]=df[k];
+ if(!Array.isArray(S.cfg.keys)||!S.cfg.keys.length)S.cfg.keys=Object.keys(S.d);
+ S.cfg.keys.forEach(k=>{if(!S.d[k])S.d[k]=fresh(k);fix(S.d[k],k)});
+ if(!S.d[S.cur])S.cur=S.cfg.keys[0];
+ S.rd=S.rd||0;
+ S.rv=S.rv??-1;
+}
+initState();
+
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const CFG=()=>S.cfg;
+const D=()=>S.d[S.cur];
+const NC=()=>D().cr.length;
+const CR_LIST=()=>D().cr;
+const SH_LIST=()=>D().sh;
+const CUR_TITLE=()=>D().title||"การประกวด";
+const CUR_SHORT=()=>D().shortName||CUR_TITLE().replace(/^การประกวด/,"");
+const CUR_DOC=()=>D().docTitle||CUR_TITLE().replace(/^การ/,"");
+const CUR_PRIZES=()=>D().prizes&&D().prizes.length?D().prizes:DEF_PRIZE;
+const NJ=()=>Math.max(1,Math.min(15,D().nj||5));
+const NR=()=>Math.max(1,Math.min(5,D().nr||1));
+const VNR=()=>Math.max(1,Math.min(10,D().vnr||1));
+const defaultJRole=j=>j==0?"ประธานกรรมการ":(j==NJ()-1&&NJ()>1?"กรรมการและเลขานุการ":"กรรมการคนที่ "+thn(j+1));
+const jrole=j=>(D().jroles&&D().jroles[j]&&D().jroles[j].trim())?D().jroles[j].trim():defaultJRole(j);
+const jtitle=j=>{
+ if(D().jroles&&D().jroles[j]&&D().jroles[j].trim())return D().jroles[j].trim();
+ return j==0?"ประธานกรรมการ":(j==NJ()-1&&NJ()>1?"กรรมการและเลขานุการ":"กรรมการ");
+};
+const jsh=j=>{
+ const p=D().jp[j],custom=D().jroles&&D().jroles[j]&&D().jroles[j].trim();
+ const r=custom||(j==0?"ประธาน":(j==NJ()-1&&NJ()>1?"เลขานุการ":"กก. "+thn(j+1)));
+ return p?`<span style="white-space:normal;display:inline-block;max-width:120px;line-height:1.2">${esc(p)}<br><small style="font-weight:400">${esc(r)}</small></span>`:esc(r);
+};
+const jcol=j=>D().jp[j]||jrole(j);
+const jn=j=>jrole(j)+(D().jp[j]?" ("+D().jp[j]+")":"");
+const AC=r=>rng(NC()).filter(c=>D().act[r]&&D().act[r][c]);
+const PJ=()=>D().pj>0?D().pj:20;
+const KK=()=>D().agg=="sum"?1:1/NJ();
+const AV=()=>D().agg!="sum";
+const RMAX=r=>PJ()*AC(r).length;
+
+function toast(msg,bad){
+ const el=$("#toast");
+ if(!el)return;
+ el.textContent=msg;
+ el.className="noprint show"+(bad?" bad":"");
+ clearTimeout(toast.t);
+ toast.t=setTimeout(()=>el.className="noprint",2600);
+}
+function askModal(title,body,onOk,onlyAlert){
+ $("#mTitle").textContent=title;
+ $("#mBody").textContent=body;
+ $("#mCancel").style.display=onlyAlert?"none":"inline-block";
+ $("#modal").classList.add("show");
+ $("#mOk").onclick=()=>{closeModal();if(onOk)onOk()};
+}
+function closeModal(){$("#modal").classList.remove("show")}
+
+function cell(j,i,r=S.rd){
+ const d=D(),k=r+"_"+j+"_"+i,nc=NC();
+ if(!d.sc[k])d.sc[k]={c:Array(nc).fill(null),t:null};
+ while(d.sc[k].c.length<nc)d.sc[k].c.push(null);
+ return d.sc[k];
+}
+function ctot(cl,r=S.rd){
+ const a=AC(r);
+ if(!a.length)return null;
+ if(D().tot)return cl.t;
+ return a.every(c=>cl.c[c]!=null)?fm(a.reduce((s,c)=>s+cl.c[c],0)):null;
+}
+function cutInfo(rPrev){
+ const d=D(),n=d.adv[rPrev];
+ const prevElig=rPrev>0?elig(rPrev):null;
+ const s=calc(0,rPrev,true,prevElig).s.filter(x=>x.cnt>0&&(!prevElig||prevElig.has(x.i)));
+ const man=Array.isArray(d.manElig&&d.manElig[rPrev])&&d.manElig[rPrev].length>0?d.manElig[rPrev].filter(i=>i>=0&&i<d.n&&(!prevElig||prevElig.has(i))):null;
+ if(!(n>0))return{n:0,s,prevElig,man,hasCutTie:false,above:[],tied:[],cut:null,slotsLeft:0,autoList:[]};
+ if(s.length<n)return{n,s,prevElig,man,hasCutTie:false,above:[],tied:[],cut:null,slotsLeft:n,autoList:[]};
+ const cut=s[n-1].sum;
+ const above=s.filter(x=>x.sum>cut).map(x=>x.i);
+ const tied=s.filter(x=>x.sum==cut).map(x=>x.i);
+ const allAtOrAbove=s.filter(x=>x.sum>=cut).map(x=>x.i);
+ const strictTopN=s.slice(0,n).map(x=>x.i);
+ const hasCutTie=allAtOrAbove.length>n&&tied.length>1;
+ const slotsLeft=Math.max(0,n-above.length);
+ const autoList=d.advTie=="tb"?strictTopN:allAtOrAbove;
+ return{n,s,prevElig,man,hasCutTie,above,tied,cut,slotsLeft,autoList,allAtOrAbove,strictTopN};
+}
+function elig(r){
+ const d=D();
+ if(r<=0)return null;
+ const prevElig=elig(r-1);
+ const n=d.adv[r-1];
+ if(!(n>0))return prevElig;
+ const ci=cutInfo(r-1);
+ if(ci.man)return new Set(ci.man);
+ if(ci.s.length<n)return null;
+ return new Set(ci.autoList);
+}
+function pool(r){const E=elig(r);return rng(D().n).filter(i=>!E||E.has(i))}
+function prog(j){return pool(S.rd).filter(i=>ctot(cell(j,i))!=null).length}
+
+function comb(v){
+ v=v.filter(t=>t!=null);
+ if(!v.length)return null;
+ const m=D().dup;
+ return m=="sum"?v.reduce((p,q)=>p+q,0):m=="last"?v[v.length-1]:v.reduce((p,q)=>p+q,0)/v.length;
+}
+function groups(){
+ const g={};
+ rng(NR()).forEach(q=>{(g[JSON.stringify(AC(q))]??=[]).push(q)});
+ return Object.values(g);
+}
+function five(i){
+ const d=D(),nc=NC(),js=[],fc=d.tot?null:Array(nc).fill(0);
+ let t=0;
+ for(let j=0;j<NJ();j++){
+  let jt=null;
+  if(d.tot){
+   groups().forEach(g=>{const v=comb(g.map(q=>ctot(cell(j,i,q),q)));if(v!=null)jt=(jt??0)+v});
+  }else{
+   rng(nc).forEach(c=>{
+    const v=comb(rng(NR()).filter(q=>d.act[q]&&d.act[q][c]).map(q=>cell(j,i,q).c[c]));
+    if(v!=null){jt=(jt??0)+v;fc[c]+=v}
+   });
+  }
+  js.push(jt==null?null:fm(jt));
+  if(jt!=null)t+=jt;
+ }
+ return{t:fm(t),js,fc:fc&&fc.map(fm)};
+}
+function MAXF(){
+ const d=D(),nc=NC();
+ if(d.tot){
+  return fm(NJ()*groups().reduce((s,g)=>s+(d.dup=="sum"?g.reduce((p,q)=>p+RMAX(q),0):RMAX(g[0])),0)*KK());
+ }
+ let activeCrit=0;
+ rng(nc).forEach(c=>{
+  const cnt=rng(NR()).filter(q=>d.act[q]&&d.act[q][c]).length;
+  if(cnt>0)activeCrit+=(d.dup=="sum"?cnt:1);
+ });
+ return fm(NJ()*activeCrit*PJ()*KK());
+}
+
+function calc(a,b,lite,forceElig){
+ const d=D(),K=KK(),nc=NC();
+ a=a??0;b=b??NR()-1;
+ const E={};
+ if(!lite)for(let q=a;q<=b;q++)E[q]=elig(q);
+ const r=[];
+ for(let i=0;i<d.n;i++){
+  let sum=0,cnt=0,need=0,cr=Array(nc).fill(0),crl=Array(nc).fill(0),js=Array(NJ()).fill(null),pr=[];
+  for(let q=a;q<=b;q++){
+   let ps=0,pc=0;
+   const inRound=lite?(!forceElig||forceElig.has(i)):(!E[q]||E[q].has(i));
+   if(!lite&&inRound)need+=NJ();
+   if(inRound){
+    for(let j=0;j<NJ();j++){
+     const cl=cell(j,i,q),t=ctot(cl,q);
+     if(t!=null){
+      ps+=t;pc++;js[j]=fm((js[j]??0)+t);
+      if(!d.tot){AC(q).forEach(c=>{cr[c]+=cl.c[c];if(q==b)crl[c]+=cl.c[c]})}
+     }
+    }
+   }
+   pr.push(pc?fm(ps*K):null);
+   sum+=ps;cnt+=pc;
+  }
+  const tbo=+(d.tbOrder&&d.tbOrder[i]||0);
+  r.push({i,sum:fm(sum*K),cnt,need,cr,crl,js,pr,tb:d.tb>=0&&!d.tot?(cr[d.tb]||0):0,tbo});
+ }
+ const last=NR()-1,fl=!lite&&a==0&&b==last&&last>0&&(d.fin=="last"||d.fin=="five")&&r.some(x=>x.pr[last]!=null);
+ if(fl){
+  const F=E[last];
+  r.forEach(x=>{
+   x.fin=!F||F.has(x.i);
+   if(!x.fin){x.out=true;return}
+   if(d.fin=="last"){x.sum=fm(x.pr[last]||0);x.tb=d.tb>=0&&!d.tot?(x.crl[d.tb]||0):0;return}
+   const f=five(x.i);
+   x.sum=fm(f.t*K);
+   x.js=f.js;
+   x.fc=f.fc&&f.fc.map(t=>fm(t*K));
+   x.tb=d.tb>=0&&f.fc?(f.fc[d.tb]||0):0;
+  });
+ }
+ const s=[...r].sort((x,y)=>(y.fin?1:0)-(x.fin?1:0)||y.sum-x.sum||y.tb-x.tb||y.tbo-x.tbo||x.i-y.i);
+ s.forEach((x,k)=>{x.rank=k&&s[k-1].sum==x.sum&&s[k-1].tb==x.tb&&s[k-1].tbo==x.tbo&&!!s[k-1].fin==!!x.fin?s[k-1].rank:k+1});
+ s.forEach(x=>{
+  x.tie=x.cnt>0&&s.filter(y=>y.cnt>0&&y.rank==x.rank).length>1;
+  x.rawTie=x.cnt>0&&s.filter(y=>y.cnt>0&&!!y.fin==!!x.fin&&y.sum==x.sum&&y.tb==x.tb).length>1;
+ });
+ return{r,s,fl};
+}
+
+const nm=i=>D().names[i]?esc(D().names[i]):'<span style="color:var(--mut)">(ยังไม่ระบุชื่อ)</span>';
+const allDone=()=>calc().s.every(x=>x.cnt>=x.need&&x.need>0);
+const rv=()=>NR()>1&&S.rv>=0&&S.rv<NR()?S.rv:-1;
+const rr=()=>rv()<0?[0,NR()-1]:[rv(),rv()];
+const lastStarted=()=>rng(D().n).some(i=>rng(NJ()).some(j=>ctot(cell(j,i,NR()-1),NR()-1)!=null));
+const FV=()=>NR()>1&&D().fin=="five"&&(S.rv==20||(S.rv==-1&&lastStarted()));
+const vtot=(i,rFilter=-1)=>fm(D().vlog.reduce((p,e)=>e.i==i&&(rFilter<0||(e.r??0)==rFilter)?p+e.q:p,0));
+const st=()=>{const d=D(),r=S.rv-10;return S.rv>=10&&r<NR()-1&&d.adv[r]>0?r:-1};
+function advInfo(){
+ const d=D(),o=[];
+ for(let r=0;r<NR()-1;r++){
+  if(!(d.adv[r]>0))continue;
+  const E=elig(r+1),ci=cutInfo(r),ready=rng(r+1).every(q=>pool(q).every(i=>rng(NJ()).every(j=>ctot(cell(j,i,q),q)!=null)));
+  o.push({r,E,ci,ready,n:d.adv[r]});
+ }
+ return o;
+}
+const advList=o=>calc(0,o.r,true).s.filter(x=>o.E.has(x.i)).map(x=>x.i+1).join(", ");
+const MAXT=(a,b)=>fm(rng(b-a+1).reduce((s,x)=>s+NJ()*RMAX(a+x),0)*KK());
+
+function renderHeader(){
+ const c=CFG();
+ document.title=`${c.appTitle} ${c.org} ประจำปีงบประมาณ ${c.fy}`;
+ $("#hdrTitle").innerHTML=`${esc(c.appTitle)}<small id="hdrSub">${esc(c.org)} · ${esc(c.ev)} ${esc(c.dtShort)}</small>`;
+}
+
+function renderSw(){
+ const keys=CFG().keys;
+ $("#sw").innerHTML=keys.map(k=>{
+  const d=S.d[k];
+  if(!d)return"";
+  return`<button class="${S.cur==k?"on":""}" onclick="S.cur='${k}';S.tab='j0';S.rd=0;S.rv=-1;S.pstep=0;render()">${esc(d.shortName||d.title)}</button>`;
+ }).join(" ");
+}
+
+function renderNav(){
+ const d=D(),P=pool(S.rd).length;
+ let h=NR()>1?`<span style="align-self:center;color:var(--mut);font-weight:600">รอบ:</span>`+rng(NR()).map(r=>`<button class="${S.rd==r?"on":""}" onclick="S.rd=${r};render()">รอบที่ ${r+1}</button>`).join("")+`<span style="width:10px"></span>`:"";
+ h+=rng(NJ()).map(j=>{
+  const p=prog(j);
+  return`<button class="${S.tab=="j"+j?"on":""}" onclick="S.tab='j${j}';renderMain();renderNav()">${esc(jrole(j))}${d.jp[j]?`<small style="display:block;font-size:13px;opacity:.85">${esc(d.jp[j])}</small>`:""}<span class="chip ${p==P&&P>0?"ok":""}">${p}/${P}</span></button>`;
+ }).join("");
+ h+=`<button class="${S.tab=="allj"?"on":""}" onclick="S.tab='allj';renderMain();renderNav()">กรอกรวมทุกกรรมการ</button>`;
+ if(d.hasVote){
+  h+=`<button class="${S.tab=="vote"?"on":""}" onclick="S.tab='vote';renderMain();renderNav()">${esc(d.voteTab||"ขวัญใจประชาชน")}</button>`;
+ }
+ h+=`<button class="${S.tab=="res"?"on":""}" onclick="S.tab='res';renderMain();renderNav()">ตารางผลคะแนนรวม</button><button class="${S.tab=="set"?"on":""}" onclick="S.tab='set';renderMain();renderNav()">ตั้งค่า</button>`;
+ $("#nav").innerHTML=h;
+}
+
+function printHeaderHtml(subLine){
+ const c=CFG();
+ return `<div class="pr"><b style="font-size:18pt">${esc(c.org)} ${esc(c.loc)}</b><br>${subLine}<br>${esc(c.proj)} (${esc(c.ev)}) ${esc(c.dtLong)}</div>`;
+}
+
+function renderMain(){
+ const d=D(),k=S.cur,m=$("#main"),c=CFG();
+ if(S.tab=="vote"&&!d.hasVote)S.tab="j0";
+ if(S.tab[0]=="j"&&S.tab!="j"&&+S.tab.slice(1)>=NJ())S.tab="j0";
+
+ if(S.tab[0]=="j"){
+  const j=+S.tab.slice(1),rd=S.rd,ac=AC(rd),E=elig(rd),P=pool(rd).length;
+  let h=`<div class="row" style="justify-content:space-between;margin-top:0">
+   <h2 style="margin:0">${esc(CUR_TITLE())} · รอบที่ ${rd+1} · ${esc(jn(j))}</h2>
+   <div class="row" style="margin:0">
+    <button onclick="printBlankJudge(${j},${rd})">พิมพ์ใบลงคะแนนกรรมการท่านนี้</button>
+    <button onclick="clearJudge(${j},${rd})" style="color:var(--bad)">ล้างคะแนนกรรมการท่านนี้ (รอบที่ ${rd+1})</button>
+   </div>
+  </div>
+  <div class="row"><label><input type="checkbox" ${d.tot?"checked":""} onchange="D().tot=this.checked;save();render()"> กรอกเฉพาะคะแนนรวมของกรรมการท่านนี้ (เต็ม ${fm(RMAX(rd))})</label></div>
+  <p class="note">${E?`รอบนี้มีผู้เข้ารอบ ${P} คน ตามอันดับรอบก่อนหน้า · `:""}กรรมการแต่ละท่านให้ได้สูงสุดหัวข้อละ ${fm(PJ())} คะแนน · พิมพ์คะแนนแล้วกด Enter หรือปุ่มลูกศร ขึ้น/ลง/ซ้าย/ขวา เพื่อเลื่อนช่อง · ช่องเกินคะแนนเต็มจะเป็นสีแดงและไม่ถูกนับ · บันทึกอัตโนมัติในเครื่อง</p>
+  <table><thead><tr><th>หมายเลข</th><th class="l">ชื่อ / หน่วยงาน</th>`;
+  h+=d.tot?`<th>คะแนนรวม<br>(เต็ม ${fm(RMAX(rd))})</th>`:ac.map(cIdx=>`<th>${esc(SH_LIST()[cIdx])}<br>(เต็ม ${fm(PJ())})</th>`).join("")+`<th>รวม<br>(เต็ม ${fm(RMAX(rd))})</th>`;
+  h+=`</tr></thead><tbody>`;
+  for(let i=0;i<d.n;i++){
+   const cl=cell(j,i);
+   if(E&&!E.has(i)){h+=`<tr style="opacity:.45"><td><span class="no">${i+1}</span></td><td class="l">${nm(i)}</td><td colspan="${d.tot?1:ac.length+1}">ไม่ได้เข้ารอบ</td></tr>`;continue}
+   h+=`<tr><td><span class="no">${i+1}</span></td><td class="l">${nm(i)}</td>`;
+   if(d.tot){
+    h+=`<td><input class="sc" inputmode="decimal" data-j="${j}" data-i="${i}" data-c="t" value="${cl.t??""}"></td>`;
+   }else{
+    ac.forEach(cIdx=>h+=`<td><input class="sc" inputmode="decimal" data-j="${j}" data-i="${i}" data-c="${cIdx}" value="${cl.c[cIdx]??""}"></td>`);
+    h+=`<td class="tot" id="t_${j}_${i}">${ctot(cl)??"–"}</td>`;
+   }
+   h+=`</tr>`;
+  }
+  m.innerHTML=h+`</tbody></table>`;
+ }else if(S.tab=="allj"){
+  const rd=S.rd,E=elig(rd),P=pool(rd).length,mx=RMAX(rd);
+  let h=`<div class="row" style="justify-content:space-between;margin-top:0">
+   <h2 style="margin:0">กรอกรวมทุกกรรมการ · ${esc(CUR_TITLE())} · รอบที่ ${rd+1}</h2>
+   <button onclick="printBlankAll(${rd})">พิมพ์ใบลงคะแนนเปล่าครบทุกกรรมการ</button>
+  </div>
+  <p class="note">${d.tot?`โหมดกรอกคะแนนรวมรายกรรมการ (ท่านละเต็ม ${fm(mx)} คะแนน)`:`กำลังแสดงคะแนนรวมของกรรมการแต่ละท่านในรอบที่ ${rd+1} (หากต้องการกรอกเฉพาะผลรวมจากกระดาษโดยตรง ให้ติ๊กช่องด้านล่าง)`}</p>
+  <div class="row"><label><input type="checkbox" ${d.tot?"checked":""} onchange="D().tot=this.checked;save();render()"> เปิดโหมดคีย์เฉพาะคะแนนรวมของกรรมการแต่ละท่าน (เต็มท่านละ ${fm(mx)} คะแนน — เหมาะสำหรับรวมคะแนนด่วนจากใบสรุป)</label></div>
+  <table><thead><tr><th>หมายเลข</th><th class="l">ชื่อ / หน่วยงาน</th>${rng(NJ()).map(j=>`<th>${jsh(j)}<br><small>(เต็ม ${fm(mx)})</small></th>`).join("")}<th>รวม (${AV()?"เฉลี่ย":"ผลรวม"})</th></tr></thead><tbody>`;
+  for(let i=0;i<d.n;i++){
+   if(E&&!E.has(i)){h+=`<tr style="opacity:.45"><td><span class="no">${i+1}</span></td><td class="l">${nm(i)}</td><td colspan="${NJ()+1}">ไม่ได้เข้ารอบ</td></tr>`;continue}
+   h+=`<tr><td><span class="no">${i+1}</span></td><td class="l">${nm(i)}</td>`;
+   let rSum=0,rCnt=0;
+   for(let j=0;j<NJ();j++){
+    const cl=cell(j,i,rd),t=ctot(cl,rd);
+    if(t!=null){rSum+=t;rCnt++}
+    if(d.tot){
+     h+=`<td><input class="sc" inputmode="decimal" data-j="${j}" data-i="${i}" data-c="t" value="${cl.t??""}"></td>`;
+    }else{
+     h+=`<td>${t??"–"} <button style="font-size:13px;padding:1px 6px" onclick="S.tab='j${j}';renderNav();renderMain()">กรอกรายข้อ</button></td>`;
+    }
+   }
+   const disp=rCnt?fm(rSum*KK()):"–";
+   h+=`<td class="tot" id="rt_${i}">${disp}</td></tr>`;
+  }
+  m.innerHTML=h+`</tbody></table>`;
+ }else if(S.tab=="res"){
+  const fvw=FV(),sg=st(),v=rv(),[a,b]=sg>=0?[0,sg]:rr(),{s,fl}=calc(a,b),nr=NR(),single=sg<0&&(v>=0||nr==1),EG=sg>=0?elig(sg+1):null,AI=sg>=0?advInfo().find(o=>o.r==sg):null;
+  const title=fvw?`รอบสุดท้าย รวม ${NC()} หัวข้อ`:v<0?(nr>1?`รอบที่ 1-${nr}`:"รอบที่ 1"):`รอบที่ ${v+1}`;
+  let h=printHeaderHtml(`${sg>=0?"สรุปผลการคัดเลือกผู้เข้ารอบที่ "+(sg+2):"ใบรวมคะแนน ("+esc(title)+")"} ${esc(CUR_TITLE())} ประจำปีงบประมาณ พ.ศ. ${esc(c.fy)}`);
+  h+=`<div class="row noprint"><h2 style="margin:0;flex:1">ตารางผลคะแนนรวม · ${esc(CUR_TITLE())}</h2>
+   <label style="font-size:16px"><input type="checkbox" ${S.incJ?"checked":""} onchange="S.incJ=this.checked;save()"> รวมใบคะแนนรายกรรมการ</label>
+   <button class="pri" onclick="printSheets()">พิมพ์ใบรวมคะแนน (ฟอนต์สารบัญ 16pt)</button>
+   <button class="gold" onclick="exportDoc()">ส่งออกไฟล์ Word (.docx 16pt)</button>
+   <button onclick="window.print()">พิมพ์ตารางหน้านี้ (16pt)</button>
+   <button onclick="csv()">ส่งออก CSV (Excel)</button>
+  </div>`;
+  if(nr>1){
+   h+=`<div class="row noprint">ดูผล: <button style="${v<0&&sg<0&&!fvw?"background:var(--g);color:#fff":""}" onclick="S.rv=-2;renderMain()">รวมทุกรอบ</button>`
+   +rng(nr).map(r=>`<button style="${v==r?"background:var(--g);color:#fff":""}" onclick="S.rv=${r};renderMain()">รอบที่ ${r+1}</button>`).join("")
+   +rng(nr-1).filter(r=>d.adv[r]>0).map(r=>`<button style="${sg==r?"background:var(--g);color:#fff":"border-color:var(--gold)"}" onclick="S.rv=${10+r};renderMain()">ผลคัดเข้ารอบที่ ${r+2}</button>`).join("")
+   +(d.fin=="five"?`<button style="${fvw?"background:var(--g);color:#fff":"border-color:var(--gold)"}" onclick="S.rv=20;renderMain()">ผลรอบสุดท้าย (รวมครบทุกหัวข้อ)</button>`:"")+`</div>`;
+  }
+  if(sg>=0){
+   const ci=AI?AI.ci:cutInfo(sg);
+   h+=EG?`<div class="warn ok"><b>ผู้เข้ารอบที่ ${sg+2} จำนวน ${EG.size} คน ${ci.man?"(กำหนดผู้เข้ารอบเองตามมติคณะกรรมการ)":"(คำนวณอัตโนมัติ)"}:</b> หมายเลข ${advList({r:sg,E:EG})}${AI&&!AI.ready?" <small>(ผลชั่วคราว กรรมการกรอกยังไม่ครบ)</small>":""} ${ci.man?`<button class="noprint" style="margin-left:8px;font-size:14px" onclick="clearManElig(${sg})">รีเซ็ตกลับเป็นคัดอัตโนมัติ</button>`:""}</div>`:`<div class="warn">ยังคัดผู้เข้ารอบไม่ได้ เพราะมีผู้ได้คะแนนน้อยกว่าจำนวนที่กำหนด (${d.adv[sg]} คน)</div>`;
+   if(ci.hasCutTie||ci.man){
+    h+=`<div class="sec noprint" style="background:#fffdf6;border-color:var(--gold)">
+     <b>จัดการกรณีคะแนนเท่ากันตรงเส้นตัดเข้ารอบที่ ${sg+2} (เป้าหมายคัด ${d.adv[sg]} คน):</b>
+     ${ci.hasCutTie?`<div style="margin:4px 0;color:var(--bad)">พบผู้ได้คะแนนเท่ากันที่เส้นตัด (${ci.cut} คะแนน) จำนวน ${ci.tied.length} คน ได้แก่ <b>หมายเลข ${ci.tied.map(i=>i+1).join(", ")}</b> (คะแนนสูงกว่าเส้นตัดมีแล้ว ${ci.above.length} คน · เหลือโควตาตามเกณฑ์ ${ci.slotsLeft} คน)</div>`:""}
+     <div class="row" style="margin:6px 0">
+      <button class="${!ci.man&&d.advTie!='tb'?'pri':''}" onclick="D().advTie='all';clearManElig(${sg})">ให้คนคะแนนเท่ากันตรงเส้นตัดเข้ารอบทั้งหมด (${ci.allAtOrAbove?ci.allAtOrAbove.length:EG?.size||0} คน)</button>
+      <button class="${!ci.man&&d.advTie=='tb'?'pri':''}" onclick="D().advTie='tb';clearManElig(${sg})">ตัดให้เหลือ ${d.adv[sg]} คนพอดี (ตามเกณฑ์ชี้ขาด/ลำดับที่ตั้งไว้)</button>
+      ${ci.hasCutTie?`<span style="color:var(--mut)">หรือคลิกเลือกเฉพาะคนที่กรรมการชี้ขาดให้เข้ารอบ:</span>`:""}
+     </div>
+     ${ci.hasCutTie?`<div class="row" style="margin:4px 0">
+      <small style="color:var(--mut)">คลิกเพื่อสลับสถานะเข้ารอบของกลุ่มคะแนนเท่ากัน (${ci.cut} คะแนน):</small>
+      ${ci.tied.map(i=>{
+       const on=EG&&EG.has(i);
+       return`<button class="${on?'pri':''}" onclick="toggleManElig(${sg},${i})">${on?'✓ เข้ารอบ':'✗ ตกรอบ'}: หมายเลข ${i+1}${d.names[i]?' ('+esc(d.names[i])+')':''}</button>`;
+      }).join("")}
+     </div>`:""}
+     <div style="font-size:15px;color:var(--mut)">* คุณยังสามารถคลิกปุ่ม <b>"เข้ารอบ / ตกรอบ"</b> ในคอลัมน์ขวาสุดของตารางด้านล่าง เพื่อกำหนดผู้ผ่านเข้ารอบที่ ${sg+2} รายบุคคลได้ตามดุลยพินิจของคณะกรรมการ</div>
+    </div>`;
+   }
+  }
+  const activeRows=(fvw?calc().s.filter(x=>x.fin):s).filter(x=>x.cnt>0);
+  const hasAnyRawTie=activeRows.some(x=>x.rawTie);
+  const hasManualTb=Object.values(d.tbOrder||{}).some(v=>v!=0);
+  if(hasAnyRawTie||hasManualTb){
+   h+=`<div class="warn noprint" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between">
+    <div><b>การชี้ขาดกรณีคะแนนรวมเท่ากัน:</b> หากหลักเกณฑ์ไม่ได้กำหนดไว้ คณะกรรมการสามารถกดปุ่ม <b>▲ เลื่อนอันดับขึ้น / ▼ เลื่อนลง</b> ท้ายชื่อผู้ที่ได้คะแนนเท่ากันในตารางด้านล่าง เพื่อจัดลำดับหรือชี้ขาดผู้เข้ารอบ/ผู้รับรางวัลได้โดยตรง</div>
+    ${hasManualTb?`<button onclick="clearTbOrder()">รีเซ็ตการชี้ขาดลำดับทั้งหมด</button>`:""}
+   </div>`;
+  }
+  const tieBtnHtml=x=>{
+   if(!x.rawTie)return"";
+   return`<span class="noprint" style="margin-left:4px"><button title="ให้หมายเลขนี้ชนะชี้ขาด/เลื่อนอันดับขึ้น" style="padding:0 5px;font-size:13px" onclick="bumpTb(${x.i},1)">▲</button><button title="เลื่อนอันดับลง" style="padding:0 5px;font-size:13px" onclick="bumpTb(${x.i},-1)">▼</button></span>`+(x.tbo?`<small class="noprint" style="color:var(--ok);display:block;font-size:12px">ชี้ขาดแล้ว</small>`:"");
+  };
+  if(fvw){
+   const F=calc().s.filter(x=>x.fin),mx=MAXF(),own=d.tot,vt=x=>d.hasVote?`<td class="noprint">${vtot(x.i)}</td>`:"";
+   h+=`<div class="warn ok">ผลรอบสุดท้าย: ผู้เข้ารอบ ${F.length} คน · คะแนนรวม${own?"":`ทั้ง ${NC()} หัวข้อ`} (เต็ม ${mx}) · หัวข้อที่ให้คะแนนซ้ำหลายรอบ${{avg:"ใช้ค่าเฉลี่ย",last:"ใช้คะแนนรอบหลังสุด",sum:"บวกรวมทุกรอบ"}[d.dup||"avg"]}</div>
+   <table><thead><tr><th>อันดับ</th><th>หมายเลข</th><th class="l">ชื่อ / หน่วยงาน</th>${own?rng(NJ()).map(j=>`<th>${jsh(j)}</th>`).join(""):SH_LIST().map(x=>`<th>${esc(x)}<br>(เต็ม ${fm(PJ()*NJ()*KK())})</th>`).join("")}<th>รวม<br>(เต็ม ${mx})</th><th>เฉลี่ย/กก.</th>${d.hasVote?`<th class="noprint">ยอด${esc(d.voteTab||"ขวัญใจ")}</th>`:""}</tr></thead><tbody>`;
+   F.forEach(x=>{
+    h+=`<tr><td><b>${x.rank}</b>${x.tie?' <span class="tie">เท่ากัน</span>':""}${tieBtnHtml(x)}</td><td><span class="no">${x.i+1}</span></td><td class="l">${nm(x.i)}</td>${own?x.js.map(t=>`<td>${t??"–"}</td>`).join(""):(x.fc||[]).map(t=>`<td>${t}</td>`).join("")}<td class="tot">${x.sum}</td><td>${fm(AV()?x.sum:x.sum/NJ())}</td>${vt(x)}</tr>`;
+   });
+   h+=`</tbody></table>`;
+  }else{
+   h+=`<table><thead><tr><th>อันดับ</th><th>หมายเลข</th><th class="l">ชื่อ / หน่วยงาน</th>${single?rng(NJ()).map(j=>`<th>${jsh(j)}</th>`).join(""):rng(b-a+1).map(q=>`<th>รอบที่ ${a+q+1}</th>`).join("")}<th>${fl?(d.fin=="five"?`คะแนนรวมทุกหัวข้อ<br>(เต็ม ${MAXF()})`:"คะแนนตัดสิน<br>(รอบสุดท้าย)"):`รวม (เต็ม ${MAXT(a,b)})`}</th>${single&&!AV()?"<th>เฉลี่ย</th>":""}${sg>=0?"<th>ผลการคัดเลือก (คลิกปรับได้)</th>":""}${d.hasVote?`<th class="noprint">ยอด${esc(d.voteTab||"ขวัญใจ")}</th>`:""}</tr></thead><tbody>`;
+   s.forEach(x=>{
+    const inElig=EG&&EG.has(x.i);
+    h+=`<tr ${inElig?'style="background:#eef6f0"':""}><td><b>${x.cnt?x.rank:"–"}</b>${x.tie?' <span class="tie">เท่ากัน</span>':""}${tieBtnHtml(x)}</td><td><span class="no">${x.i+1}</span></td><td class="l">${nm(x.i)}</td>${single?x.js.map(t=>`<td>${t??"–"}</td>`).join(""):x.pr.map(t=>`<td>${t??"–"}</td>`).join("")}<td class="tot">${x.sum}${x.out?' <small style="color:var(--mut)">ตกรอบ</small>':""}</td>${single&&!AV()?`<td>${x.cnt?fm(x.sum/x.cnt):"–"}</td>`:""}${sg>=0?`<td>${EG?(inElig?'<b style="color:var(--ok)">เข้ารอบ</b>':'<span style="color:var(--mut)">ตกรอบ</span>'):"–"} <button class="noprint" style="font-size:13px;padding:1px 7px;margin-left:4px" onclick="toggleManElig(${sg},${x.i})">${inElig?"เปลี่ยนเป็นตกรอบ":"เลือกให้เข้ารอบ"}</button></td>`:""}${d.hasVote?`<td class="noprint">${vtot(x.i)}</td>`:""}</tr>`;
+   });
+   h+=`</tbody></table>`;
+  }
+  if(!d.tot)h+=`<p class="note noprint">คะแนนรายหัวข้อรวมจากกรรมการทุกท่านใช้ประกอบการตัดสินเมื่อคะแนนเท่ากัน (ตั้งค่าได้ในหน้า "ตั้งค่า")</p>`;
+  h+=`<div class="sig pr">${rng(NJ()).map(j=>`<div>(ลงชื่อ)....................................................${esc(jtitle(j))}<br>(${esc(d.jp[j]||"....................................................")})</div>`).join("")}</div>`;
+  m.innerHTML=h;
+ }else if(S.tab=="vote"&&d.hasVote){
+  const vnr=VNR(),vrd=Math.min(d.vrd||0,vnr-1),vrv=d.vrv>=0&&d.vrv<vnr?d.vrv:-1;
+  d.vrd=vrd;
+  const T=rng(d.n).map(i=>vtot(i,vrv)),mx=Math.max(0,...T),u=esc(d.vu||"ดอก"),top=rng(d.n).filter(i=>mx>0&&T[i]==mx);
+  const order=rng(d.n).sort((x,y)=>T[y]-T[x]||x-y),rk=[];
+  order.forEach((i,q)=>{rk[i]=q&&T[order[q-1]]==T[i]?rk[order[q-1]]:q+1});
+  const roundLabel=vrv<0?(vnr>1?`รวมทุกรอบ (รอบที่ 1-${vnr})`:"รวมทั้งหมด"):`เฉพาะรอบที่ ${vrv+1}`;
+  let h=printHeaderHtml(`สรุปยอด${esc(d.voteTitle||"รางวัลขวัญใจประชาชน")} (${esc(roundLabel)}) · ${esc(CUR_TITLE())} ประจำปีงบประมาณ พ.ศ. ${esc(c.fy)}`);
+  h+=`<div class="row noprint" style="justify-content:space-between;margin-top:0">
+   <h2 style="margin:0">${esc(d.voteTitle||"รางวัลขวัญใจประชาชน")}</h2>
+   <div class="row" style="margin:0">
+    <label>จำนวนรอบการขายดอกไม้/โหวต: <select onchange="setVNR(this.value)">${rng(10).map(x=>`<option value="${x+1}" ${vnr==x+1?"selected":""}>${x+1} รอบ</option>`).join("")}</select></label>
+    <button class="pri" onclick="window.print()">พิมพ์สรุป (ฟอนต์สารบัญ 16pt)</button>
+    <button onclick="csvVote()">ส่งออก CSV</button>
+   </div>
+  </div>`;
+  if(vnr>1){
+   h+=`<div class="sec noprint" style="padding:10px 12px">
+    <div class="row" style="margin:0 0 6px">
+     <b style="color:var(--g)">เลือกรอบที่กำลังบันทึกยอดดอกไม้:</b>
+     ${rng(vnr).map(r=>{
+      const rSum=fm(d.vlog.reduce((p,e)=>(e.r??0)==r?p+e.q:p,0));
+      return`<button class="${vrd==r?"pri":""}" onclick="D().vrd=${r};save();renderMain()">บันทึกในรอบที่ ${r+1} (รวม ${rSum} ${u})</button>`;
+     }).join("")}
+    </div>
+    <div class="row" style="margin:6px 0 0;padding-top:6px;border-top:1px dashed var(--line)">
+     <span>มุมมองตารางสรุปและใบพิมพ์:</span>
+     <button class="${vrv<0?"pri":""}" onclick="D().vrv=-1;save();renderMain()">รวมทุกรอบ (1-${vnr})</button>
+     ${rng(vnr).map(r=>`<button class="${vrv==r?"pri":""}" onclick="D().vrv=${r};save();renderMain()">ดูเฉพาะรอบที่ ${r+1}</button>`).join("")}
+    </div>
+   </div>`;
+  }
+  h+=`<div class="row noprint" style="background:var(--tint);padding:10px 14px;border-radius:8px">
+   <b>${vnr>1?`[กำลังบันทึก: รอบที่ ${vrd+1}]`:`บันทึกยอด`}</b>
+   <label>หมายเลขผู้เข้าประกวด (1-${d.n}) <input class="sc" id="vn" inputmode="numeric" placeholder="เลข"></label>
+   <label>จำนวน (${u}) <input class="sc" id="vq" inputmode="decimal" placeholder="จำนวน"></label>
+   <button class="pri" onclick="addV()">+ บันทึกยอด${vnr>1?` (รอบที่ ${vrd+1})`:""}</button>
+   ${vnr>1?`<button style="color:var(--bad);margin-left:auto" onclick="clearVoteRound(${vrd})">ล้างยอดเฉพาะรอบที่ ${vrd+1}</button>`:""}
+  </div>
+  <p class="note noprint">พิมพ์หมายเลขผู้เข้าประกวด กด Enter พิมพ์จำนวน (${u}) กด Enter อีกครั้งเพื่อบันทึกสะสมใน${vnr>1?`<b>รอบที่ ${vrd+1}</b>`:"ระบบ"}ทันที</p>`;
+  if(top.length>1){
+   h+=`<div class="warn"><b>ยอดสูงสุดเท่ากัน (${roundLabel}):</b> หมายเลข ${top.map(i=>i+1).join(", ")} (${mx} ${u}) · คณะกรรมการสามารถเลือกผู้ชนะชี้ขาดได้:
+    <div class="row noprint" style="margin:6px 0 0">
+     <button class="${d.votePick<0?'pri':''}" onclick="D().votePick=-1;save();renderMain();renderLive()">รับรางวัลร่วมกันทุกคน</button>
+     ${top.map(i=>`<button class="${d.votePick==i?'pri':''}" onclick="D().votePick=${i};save();renderMain();renderLive()">ชี้ขาดให้ หมายเลข ${i+1}${d.names[i]?' ('+esc(d.names[i])+')':''} ชนะ</button>`).join("")}
+    </div>
+   </div>`;
+  }
+  const lg=d.vlog.map((e,q)=>[e,q]).filter(([e])=>vrv<0||(e.r??0)==vrv).slice(-10).reverse();
+  if(lg.length){
+   h+=`<p class="note noprint"><b>รายการบันทึกล่าสุด${vrv>=0?` (รอบที่ ${vrv+1})`:""}:</b> ${lg.map(([e,q])=>`<span style="display:inline-block;background:#faf9f5;border:1px solid var(--line);border-radius:6px;padding:1px 8px;margin:2px">${vnr>1?`[รอบ ${(e.r??0)+1}] `:""}หมายเลข ${e.i+1} <b>+${e.q}</b> <button style="font-size:13px;padding:0 5px;color:var(--bad)" onclick="undoV(${q})">ลบ</button></span>`).join(" ")}</p>`;
+  }
+  h+=`<table><thead><tr><th>อันดับ</th><th>หมายเลข</th><th class="l">ชื่อ / หน่วยงาน</th>${vnr>1&&vrv<0?rng(vnr).map(r=>`<th>รอบที่ ${r+1}<br>(${u})</th>`).join(""):""}<th>${vrv<0?`รวมทั้งหมด (${u})`:`ยอดรอบที่ ${vrv+1} (${u})`}</th></tr></thead><tbody>`;
+  order.forEach(i=>{
+   h+=`<tr><td><b>${T[i]>0?rk[i]:"–"}</b></td><td><span class="no">${i+1}</span></td><td class="l">${nm(i)}</td>${vnr>1&&vrv<0?rng(vnr).map(r=>`<td>${vtot(i,r)||"–"}</td>`).join(""):""}<td class="tot">${T[i]}</td></tr>`;
+  });
+  h+=`</tbody></table>`;
+  h+=`<div class="sig pr">${rng(NJ()).map(j=>`<div>(ลงชื่อ)....................................................${esc(jtitle(j))}<br>(${esc(d.jp[j]||"....................................................")})</div>`).join("")}</div>`;
+  m.innerHTML=h;
+ }else{
+  let h=`<div class="row" style="justify-content:space-between;margin-top:0">
+   <h2 style="margin:0">ตั้งค่าระบบ (แบบสาธารณะ ปรับแต่งได้ทุกส่วน)</h2>
+   <div class="row" style="margin:0">
+    <button onclick="backup()">สำรองข้อมูลทั้งหมด (.json)</button>
+    <button onclick="$('#imp').click()">นำเข้าข้อมูล (.json)</button>
+    <input id="imp" type="file" accept=".json" hidden onchange="restore(this)">
+    <button style="color:var(--bad)" onclick="resetAllFactory()">คืนค่าเริ่มต้นโรงงาน</button>
+   </div>
+  </div>
+
+  <div class="sec">
+   <h3>1. ข้อมูลหน่วยงานและงานประกวด (แสดงบนหัวเว็บ เอกสารพิมพ์ และไฟล์ Word)</h3>
+   <div class="grid2">
+    <div class="fbox"><label>ชื่อโปรแกรม (มุมบนซ้าย)</label><input class="tx" value="${esc(c.appTitle)}" onchange="CFG().appTitle=this.value;save();renderHeader()"></div>
+    <div class="fbox"><label>ชื่อหน่วยงาน / ผู้จัดงาน</label><input class="tx" value="${esc(c.org)}" onchange="CFG().org=this.value;save();renderHeader()"></div>
+    <div class="fbox"><label>อำเภอ / จังหวัด / ที่ตั้งหน่วยงาน</label><input class="tx" value="${esc(c.loc)}" onchange="CFG().loc=this.value;save()"></div>
+    <div class="fbox"><label>ชื่อโครงการ (ในหัวกระดาษราชการ)</label><input class="tx" value="${esc(c.proj)}" onchange="CFG().proj=this.value;save()"></div>
+    <div class="fbox"><label>ชื่องาน / เทศกาล</label><input class="tx" value="${esc(c.ev)}" onchange="CFG().ev=this.value;save();renderHeader()"></div>
+    <div class="fbox"><label>ปีงบประมาณ พ.ศ.</label><input class="tx" value="${esc(c.fy)}" onchange="CFG().fy=this.value;save();renderHeader()"></div>
+    <div class="fbox"><label>วันที่จัดงาน (แบบย่อแสดงบนหัวเว็บ)</label><input class="tx" value="${esc(c.dtShort)}" onchange="CFG().dtShort=this.value;save();renderHeader()"></div>
+    <div class="fbox"><label>วันที่จัดงาน (แบบเต็มบนใบสรุปคะแนน)</label><input class="tx" value="${esc(c.dtLong)}" onchange="CFG().dtLong=this.value;save()"></div>
+   </div>
+   <div class="row" style="margin-top:10px">
+    <label>ฟอนต์เอกสารพิมพ์และไฟล์ Word (.docx): <select onchange="CFG().pFont=this.value;save();updateSheetCss()">
+     ${["TH Sarabun New","TH SarabunIT๙","TH SarabunPSK","Sarabun"].map(f=>`<option value="${f}" ${c.pFont==f?"selected":""}>${f}</option>`).join("")}
+    </select></label>
+    <label>ขนาดฟอนต์ใบพิมพ์มาตรฐาน: <select onchange="CFG().pSize=+this.value;save();updateSheetCss()">
+     ${[14,15,16,18].map(sz=>`<option value="${sz}" ${(c.pSize||16)==sz?"selected":""}>${sz} พ้อยท์ (pt)</option>`).join("")}
+    </select></label>
+    <label><input type="checkbox" ${c.pAutoFit?"checked":""} onchange="CFG().pAutoFit=this.checked;save()"> ย่อขนาดตัวอักษรตารางอัตโนมัติเมื่อผู้เข้าประกวดเกิน 14 คน (หากไม่ติ๊ก จะใช้ขนาด ${c.pSize||16} พ้อยท์ทุกตาราง)</label>
+   </div>
+  </div>
+
+  <div class="sec">
+   <div class="row" style="justify-content:space-between;margin-top:0">
+    <h3 style="margin:0">2. จัดการประเภทการประกวด · กำลังตั้งค่า: "${esc(CUR_TITLE())}"</h3>
+    <div class="row" style="margin:0">
+     <button class="pri" onclick="addContestType()">+ เพิ่มประเภทการประกวดใหม่</button>
+     ${CFG().keys.length>1?`<button style="color:var(--bad)" onclick="delContestType()">ลบประเภทการประกวดนี้</button>`:""}
+    </div>
+   </div>
+   <div class="grid2">
+    <div class="fbox"><label>ชื่อการประกวด (ฉบับเต็ม)</label><input class="tx" value="${esc(d.title)}" onchange="D().title=this.value;save();render()"></div>
+    <div class="fbox"><label>ชื่อย่อบนปุ่มเมนูสลับหน้า</label><input class="tx" value="${esc(d.shortName)}" onchange="D().shortName=this.value;save();render()"></div>
+    <div class="fbox"><label>ข้อความในหัวตารางใบรวมคะแนน</label><input class="tx" value="${esc(d.docTitle)}" onchange="D().docTitle=this.value;save()"></div>
+    <div class="fbox"><label>จำนวนผู้เข้าประกวด (หมายเลข 1 ถึง N)</label><input class="sc" style="width:100%" type="number" min="1" max="100" value="${d.n}" onchange="setN(this.value)"></div>
+    <div class="fbox"><label>จำนวนกรรมการตัดสิน (1-15 ท่าน)</label><input class="sc" style="width:100%" type="number" min="1" max="15" value="${NJ()}" onchange="setNJ(this.value)"></div>
+    <div class="fbox"><label>คะแนนเต็มต่อหัวข้อ (ต่อกรรมการ 1 ท่าน)</label><input class="sc" style="width:100%" type="number" min="1" step="0.5" value="${d.pj||20}" onchange="D().pj=parseFloat(this.value)||20;save();render()"></div>
+    <div class="fbox"><label>วิธีคำนวณคะแนนรวมจากกรรมการทุกท่าน</label><select style="width:100%" onchange="D().agg=this.value;save();render()"><option value="avg" ${AV()?"selected":""}>ค่าเฉลี่ย (เต็ม 100 คะแนน)</option><option value="sum" ${!AV()?"selected":""}>ผลรวมคะแนนดิบ (เต็ม 100 × จำนวนกรรมการ)</option></select></div>
+    <div class="fbox"><label>จำนวนรอบการตัดสิน (1-5 รอบ)</label><select style="width:100%" onchange="setNR(this.value)">${[1,2,3,4,5].map(x=>`<option value="${x}" ${NR()==x?"selected":""}>${x} รอบ</option>`).join("")}</select></div>
+   </div>
+  </div>
+
+  <div class="sec">
+   <h3>3. ตั้งค่าระบบบันทึกยอดขายดอกไม้ / รางวัลขวัญใจประชาชน</h3>
+   <div class="row">
+    <label style="font-weight:700;color:var(--g)"><input type="checkbox" ${d.hasVote?"checked":""} onchange="D().hasVote=this.checked;save();render()"> เปิดใช้งานแท็บบันทึกยอดขายดอกไม้ / ขวัญใจประชาชน ใน${esc(CUR_TITLE())}</label>
+   </div>
+   ${d.hasVote?`<div class="grid2">
+    <div class="fbox"><label>ชื่อรางวัลขวัญใจประชาชน (หัวหน้าเพจ/ใบพิมพ์)</label><input class="tx" value="${esc(d.voteTitle)}" onchange="D().voteTitle=this.value;save()"></div>
+    <div class="fbox"><label>ชื่อบนปุ่มแท็บเมนู</label><input class="tx" value="${esc(d.voteTab)}" onchange="D().voteTab=this.value;save();renderNav()"></div>
+    <div class="fbox"><label>หน่วยนับยอด (เช่น ดอก, ช่อ, คะแนน, บาท)</label><input class="tx" value="${esc(d.vu||"ดอก")}" onchange="D().vu=this.value||'ดอก';save();render()"></div>
+    <div class="fbox"><label>จำนวนรอบการบันทึกยอดขายดอกไม้ (1-10 รอบ)</label><select style="width:100%" onchange="setVNR(this.value)">${rng(10).map(x=>`<option value="${x+1}" ${VNR()==x+1?"selected":""}>${x+1} รอบ</option>`).join("")}</select></div>
+   </div>`:""}
+  </div>
+
+  <div class="sec">
+   <div class="row" style="justify-content:space-between;margin-top:0">
+    <h3 style="margin:0">4. หัวข้อเกณฑ์การให้คะแนน (${NC()} หัวข้อ) และเกณฑ์ที่ใช้ในแต่ละรอบ</h3>
+    <div class="row" style="margin:0">
+     <button onclick="addCriterion()">+ เพิ่มหัวข้อเกณฑ์</button>
+     ${NC()>1?`<button style="color:var(--bad)" onclick="removeCriterion()">- ลบหัวข้อท้ายสุด</button>`:""}
+    </div>
+   </div>
+   <table style="margin-bottom:12px">
+    <thead><tr><th style="width:60px">ข้อที่</th><th class="l">ชื่อเกณฑ์การประเมิน (แสดงในใบรวมคะแนนและไฟล์ Word)</th><th class="l" style="width:220px">ชื่อย่อ (แสดงในหัวตารางคีย์คะแนน)</th></tr></thead>
+    <tbody>
+     ${rng(NC()).map(cIdx=>`<tr><td><b>${cIdx+1}</b></td><td class="l"><input class="tx" value="${esc(d.cr[cIdx]||"")}" onchange="D().cr[${cIdx}]=this.value;save();render()"></td><td class="l"><input class="tx" value="${esc(d.sh[cIdx]||"")}" onchange="D().sh[${cIdx}]=this.value;save();render()"></td></tr>`).join("")}
+    </tbody>
+   </table>
+
+   <p class="note">ติ๊กเลือกหัวข้อเกณฑ์ที่ใช้ในแต่ละรอบ และกำหนดจำนวนผู้ผ่านเข้ารอบถัดไป (0 = ทุกคนผ่านเข้ารอบ, สามารถตั้งค่าการตัดคนกรณีคะแนนเท่ากันตรงเส้นตัด หรือคลิกเลือกผู้ผ่านเข้ารอบเองได้)</p>
+   ${rng(NR()).map(r=>{
+    const hasAdv=r<NR()-1&&(d.adv[r]>0);
+    const ci=hasAdv?cutInfo(r):null;
+    const E=hasAdv?elig(r+1):null;
+    return`<div class="card" style="margin:6px 0;padding:8px 12px;background:#fff">
+    <b>รอบที่ ${r+1}</b>
+    ${rng(NC()).map(cIdx=>`<label style="margin-left:12px;white-space:nowrap"><input type="checkbox" ${d.act[r]&&d.act[r][cIdx]?"checked":""} onchange="D().act[${r}][${cIdx}]=this.checked?1:0;save();render()"> ${cIdx+1}. ${esc(SH_LIST()[cIdx])}</label>`).join("")}
+    ${r<NR()-1?`<div class="row" style="margin-top:6px">
+     <span>ผ่านเข้ารอบที่ ${r+2}: คัดเอาอันดับสูงสุด <input class="sc" type="number" min="0" max="100" value="${d.adv[r]||0}" onchange="D().adv[${r}]=Math.max(0,parseInt(this.value)||0);clearManElig(${r},true);save();render()"> คน</span>
+     ${hasAdv?`<button style="font-size:14px" onclick="S.tab='res';S.rv=${10+r};render()">จัดการ/เลือกผู้เข้ารอบที่ ${r+2} ด้วยตนเอง (${E?E.size:0} คน)</button>`:""}
+     ${ci&&ci.man?`<span class="chip ok">กำหนดผู้เข้ารอบเองแล้ว</span><button style="font-size:14px" onclick="clearManElig(${r})">รีเซ็ตกลับเป็นอัตโนมัติ</button>`:""}
+    </div>
+    ${hasAdv&&E?`<div style="margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);font-size:15px">
+     <span style="color:var(--mut)">คลิกหมายเลขเพื่อกำหนดผู้ผ่านเข้ารอบที่ ${r+2} เองตามมติกรรมการ (${ci&&ci.hasCutTie?`<b style="color:var(--bad)">มีคะแนนเท่ากันที่เส้นตัด ${ci.cut} คะแนน: หมายเลข ${ci.tied.map(i=>i+1).join(", ")}</b>`:"คลิกสลับ เข้ารอบ/ตกรอบ ได้ทันที"}):</span>
+     <div class="row" style="gap:4px;margin-top:4px">
+      ${rng(d.n).filter(i=>!ci.prevElig||ci.prevElig.has(i)).map(i=>{
+       const on=E.has(i);
+       const isTiedCut=ci.tied&&ci.tied.includes(i)&&ci.hasCutTie;
+       return`<button style="font-size:14px;padding:2px 8px;${isTiedCut?'border-width:2px;border-color:var(--bad);':''}" class="${on?'pri':''}" onclick="toggleManElig(${r},${i})">${on?'✓ ':''}#${i+1}</button>`;
+      }).join("")}
+     </div>
+    </div>`:""}`:""}
+   </div>`}).join("")}
+
+   ${NR()>1?`<div class="row" style="margin-top:10px">
+    <label>กรณีคะแนนเท่ากันตรงเส้นตัดคัดคนเข้ารอบ: <select onchange="D().advTie=this.value;save();render()">
+     <option value="all" ${d.advTie!="tb"?"selected":""}>ให้ผู้ที่ได้คะแนนเท่ากันตรงเส้นตัดผ่านเข้ารอบทั้งหมด (หรือกดเลือกปรับเองรายคน)</option>
+     <option value="tb" ${d.advTie=="tb"?"selected":""}>ตัดให้เหลือตามจำนวนที่ตั้งไว้พอดี (ใช้เกณฑ์ชี้ขาด / ลำดับที่กรรมการชี้ขาด)</option>
+    </select></label>
+   </div>
+   <div class="row"><label>ตัดสินอันดับสุดท้ายด้วย <select onchange="D().fin=this.value;save();render()"><option value="five" ${d.fin=="five"?"selected":""}>คะแนนรวมครบทุกหัวข้อ (เฉพาะผู้เข้ารอบสุดท้าย)</option><option value="last" ${d.fin=="last"?"selected":""}>คะแนนรอบสุดท้ายเท่านั้น</option><option value="all" ${d.fin=="all"?"selected":""}>ผลรวมคะแนนทุกรอบ</option></select></label> ${d.fin=="five"?`<label>หัวข้อที่ให้คะแนนซ้ำหลายรอบ <select onchange="D().dup=this.value;save();render()">${[["avg","ใช้ค่าเฉลี่ย"],["last","ใช้คะแนนรอบหลังสุด"],["sum","บวกรวมทุกรอบ"]].map(o=>`<option value="${o[0]}" ${(d.dup||"avg")==o[0]?"selected":""}>${o[1]}</option>`).join("")}</select></label>`:""}</div>`:""}
+   <div class="row"><label>เมื่อคะแนนรวมเท่ากัน ให้ชี้ขาดอัตโนมัติด้วยคะแนนหัวข้อ <select onchange="D().tb=+this.value;save();renderLive()"><option value="-1">ไม่ใช้เกณฑ์รายข้อ (ให้คณะกรรมการวินิจฉัย / กดปุ่ม ▲▼ ชี้ขาดเองในตารางผลคะแนน)</option>${CR_LIST().map((x,i)=>`<option value="${i}" ${d.tb==i?"selected":""}>${i+1}. ${esc(x)}</option>`).join("")}</select></label></div>
+  </div>
+
+  <div class="sec">
+   <div class="row" style="justify-content:space-between;margin-top:0">
+    <h3 style="margin:0">5. รางวัลการประกวด (แสดงในโหมดประกาศผลบนจอ)</h3>
+    <div class="row" style="margin:0">
+     <button onclick="D().prizes.push('รางวัลชมเชย');save();renderMain()">+ เพิ่มรางวัล</button>
+     ${CUR_PRIZES().length>1?`<button style="color:var(--bad)" onclick="D().prizes.pop();save();renderMain()">- ลบรางวัลท้ายสุด</button>`:""}
+    </div>
+   </div>
+   <div class="grid2">
+    ${CUR_PRIZES().map((p,idx)=>`<div class="fbox"><label>อันดับที่ ${idx+1}</label><input class="tx" value="${esc(p)}" onchange="D().prizes[${idx}]=this.value;save()"></div>`).join("")}
+   </div>
+  </div>
+
+  <div class="sec">
+   <h3>6. รายชื่อและตำแหน่งคณะกรรมการตัดสิน (${thn(NJ())} ท่าน)</h3>
+   <p class="note">สามารถแก้ไขทั้งชื่อ-นามสกุล และตำแหน่งของกรรมการแต่ละท่านได้ (หากเว้นว่างตำแหน่ง ระบบจะใช้ค่ามาตรฐาน: ประธานกรรมการ / กรรมการ / กรรมการและเลขานุการ)</p>
+   <table><thead><tr><th style="width:60px">ลำดับ</th><th class="l" style="width:260px">ตำแหน่งกรรมการ</th><th class="l">ชื่อ-นามสกุล (แสดงที่แท็บและช่องลงนามในใบพิมพ์)</th></tr></thead><tbody>
+   ${rng(NJ()).map(j=>`<tr><td><b>${thn(j+1)}</b></td><td class="l"><input class="tx" data-jr="${j}" value="${esc(d.jroles&&d.jroles[j]||"")}" placeholder="${esc(defaultJRole(j))}"></td><td class="l"><input class="tx" data-jn="${j}" value="${esc(d.jp[j]||"")}" placeholder="ชื่อ-นามสกุล"></td></tr>`).join("")}
+   </tbody></table>
+  </div>
+
+  <div class="sec">
+   <h3>7. รายชื่อผู้เข้าประกวด / หน่วยงานที่ส่งเข้าประกวด (${d.n} หมายเลข)</h3>
+   <table><thead><tr><th style="width:80px">หมายเลข</th><th class="l">ชื่อผู้เข้าประกวด / หมู่บ้าน / หน่วยงานที่ส่งเข้าประกวด</th></tr></thead><tbody>
+   ${d.names.slice(0,d.n).map((x,i)=>`<tr><td><span class="no">${i+1}</span></td><td class="l"><input class="tx" data-n="${i}" value="${esc(x)}" placeholder="ชื่อผู้เข้าประกวด หรือหน่วยงานที่ส่งเข้าประกวด"></td></tr>`).join("")}
+   </tbody></table>
+  </div>
+
+  <div class="row" style="justify-content:space-between;margin-top:14px">
+   <button style="color:var(--bad)" onclick="resetC()">ล้างคะแนนและผลโหวตทั้งหมดของ${esc(CUR_SHORT())}</button>
+  </div>`;
+  m.innerHTML=h;
+ }
+}
+
+function renderLive(){
+ const d=D(),{s,fl}=calc(),P=pool(S.rd).length,done=rng(NJ()).filter(j=>prog(j)==P&&P>0).length,fin=allDone();
+ let h=`<h2>อันดับสด · ${esc(CUR_SHORT())}${NR()>1?" (รวมทุกรอบ)":""}</h2><p class="note">${fl?(d.fin=="five"?`ผู้เข้ารอบสุดท้ายจัดอันดับด้วยคะแนนรวมครบทุกหัวข้อ · `:"ผู้เข้ารอบสุดท้ายจัดอันดับด้วยคะแนนรอบสุดท้าย · "):""}รอบที่ ${S.rd+1}: กรรมการกรอกครบแล้ว ${done}/${NJ()} ท่าน${fin?" · กรอกครบทุกรอบแล้ว":" · ผลนี้ยังไม่ใช่ผลสุดท้าย"}</p>`;
+ advInfo().forEach(o=>{
+  if(o.E){
+   h+=`<div class="warn ok"><b>ผู้เข้ารอบที่ ${o.r+2} (${o.E.size} คน${o.ci&&o.ci.man?" · กำหนดเอง":""}):</b> หมายเลข ${advList(o)}${o.ready?"":"<br><small>ผลชั่วคราว กรรมการกรอกยังไม่ครบ</small>"}
+   ${o.ci&&o.ci.hasCutTie&&!o.ci.man?`<div style="margin-top:4px;color:var(--bad);font-size:14px">มีคะแนนเท่ากันตรงเส้นตัด (${o.ci.cut} คะแนน: #${o.ci.tied.map(i=>i+1).join(", #")}) <button style="font-size:13px;padding:1px 6px" onclick="S.tab='res';S.rv=${10+o.r};render()">คลิกเลือกผู้เข้ารอบเอง</button></div>`:""}
+   </div>`;
+  }
+ });
+ if(s.slice(0,CUR_PRIZES().length).some(x=>x.tie))h+=`<div class="warn">มีคะแนนเท่ากันในอันดับรางวัล <button style="font-size:13px;padding:1px 7px" onclick="S.tab='res';render()">ไปหน้าตารางผลคะแนนเพื่อชี้ขาดลำดับ</button></div>`;
+ h+=`<ul>`+s.filter(x=>x.cnt).map(x=>`<li><span class="rk">${x.rank}</span><div class="nm"><b>หมายเลข ${x.i+1}</b>${x.tie?' <span class="tie">เท่ากัน</span>':""}${x.rawTie&&x.tbo?` <small style="color:var(--ok);font-weight:600">(ชี้ขาดแล้ว)</small>`:""}<div class="sm">${x.out?"ตกรอบ · ":""}${nm(x.i)} · ครบ ${x.cnt}/${x.need}</div></div><b class="sc2">${x.sum}</b></li>`).join("")+`</ul>`;
+ if(!s.some(x=>x.cnt))h+=`<p class="note">ยังไม่มีคะแนน เริ่มกรอกที่แท็บประธานกรรมการ หรือกรอกรวมทุกกรรมการ</p>`;
+ if(d.hasVote){
+  const T=rng(d.n).map(i=>vtot(i,-1)),mx=Math.max(0,...T);
+  if(mx>0){
+   let t=rng(d.n).filter(i=>T[i]==mx);
+   const picked=t.length>1&&d.votePick>=0&&t.includes(d.votePick);
+   if(picked)t=[d.votePick];
+   h+=`<p class="note" style="margin-top:10px;padding-top:8px;border-top:1px dashed var(--line)"><b>${esc(d.voteTab||"ขวัญใจประชาชน")}นำอยู่:</b> หมายเลข ${t.map(i=>i+1).join(", ")} (${mx} ${esc(d.vu||"ดอก")})${t.length>1?' <span class="tie">เท่ากัน</span>':""}${picked?' <small style="color:var(--ok);font-weight:600">(ชี้ขาดแล้ว)</small>':""}</p>`;
+  }
+ }
+ $("#live").innerHTML=h;
+}
+
+function toggleManElig(rPrev,i){
+ const d=D();
+ if(!d.manElig||typeof d.manElig!=="object")d.manElig={};
+ let cur=Array.isArray(d.manElig[rPrev])&&d.manElig[rPrev].length>0?[...d.manElig[rPrev]]:null;
+ if(!cur){
+  const E=elig(rPrev+1);
+  cur=E?[...E]:[];
+ }
+ if(cur.includes(i)){
+  cur=cur.filter(x=>x!==i);
+  if(!cur.length){toast("ต้องมีผู้ผ่านเข้ารอบอย่างน้อย 1 คน",true);return}
+ }else{
+  cur.push(i);
+  cur.sort((a,b)=>a-b);
+ }
+ d.manElig[rPrev]=cur;
+ save();
+ render();
+ toast(`อัปเดตผู้ผ่านเข้ารอบที่ ${rPrev+2} (${cur.length} คน) เรียบร้อย`);
+}
+function clearManElig(rPrev,silent){
+ const d=D();
+ if(d.manElig)delete d.manElig[rPrev];
+ save();
+ if(!silent){render();toast(`ใช้การคำนวณผู้เข้ารอบที่ ${rPrev+2} ตามเกณฑ์ตั้งค่าเรียบร้อย`)}
+}
+function bumpTb(i,dir){
+ const d=D();
+ if(!d.tbOrder||typeof d.tbOrder!=="object")d.tbOrder={};
+ d.tbOrder[i]=(d.tbOrder[i]||0)+dir;
+ save();
+ renderMain();
+ renderLive();
+ toast(`ปรับลำดับชี้ขาด หมายเลข ${i+1} เรียบร้อย`);
+}
+function clearTbOrder(){
+ D().tbOrder={};
+ save();
+ renderMain();
+ renderLive();
+ toast("รีเซ็ตการชี้ขาดลำดับเรียบร้อย");
+}
+
+function render(){
+ S.rd=Math.min(S.rd||0,NR()-1);
+ renderHeader();
+ renderSw();
+ renderNav();
+ renderMain();
+ renderLive();
+ updateSheetCss();
+ save();
+}
+
+document.addEventListener("focusin",e=>{
+ const tr=e.target&&e.target.closest&&e.target.closest("tbody tr");
+ document.querySelectorAll("tbody tr.foc").forEach(x=>x.classList.remove("foc"));
+ if(tr)tr.classList.add("foc");
+});
+
+document.addEventListener("input",e=>{
+ const t=e.target,a=t.dataset;
+ if(a.c!==undefined){
+  const j=+a.j,i=+a.i,cl=cell(j,i),mx=(a.c=="t"?RMAX(S.rd):PJ())+1e-9;
+  let v=t.value.trim()===""?null:parseFloat(t.value);
+  const bad=v!=null&&(isNaN(v)||v<0||v>mx);
+  t.classList.toggle("bad",bad);
+  if(bad)v=null;
+  if(a.c=="t")cl.t=v;else cl.c[+a.c]=v;
+  save();
+  const el=$("#t_"+j+"_"+i);
+  if(el)el.textContent=ctot(cl)??"–";
+  const rEl=$("#rt_"+i);
+  if(rEl){
+   let rSum=0,rCnt=0;
+   for(let jj=0;jj<NJ();jj++){const tt=ctot(cell(jj,i,S.rd),S.rd);if(tt!=null){rSum+=tt;rCnt++}}
+   rEl.textContent=rCnt?fm(rSum*KK()):"–";
+  }
+  renderNav();
+  renderLive();
+ }else if(a.n!==undefined){D().names[+a.n]=t.value;save();renderLive()}
+ else if(a.v!==undefined){D().votes[a.v]=t.value;save();renderLive()}
+ else if(a.jn!==undefined){D().jp[+a.jn]=t.value;save();renderNav()}
+ else if(a.jr!==undefined){D().jroles[+a.jr]=t.value;save();renderNav()}
+});
+
+document.addEventListener("keydown",e=>{
+ const t=e.target,a=t.dataset;
+ if(a&&a.c!==undefined&&["Enter","ArrowDown","ArrowUp","ArrowLeft","ArrowRight"].includes(e.key)){
+  if((e.key=="ArrowLeft"||e.key=="ArrowRight")&&t.selectionStart!==t.selectionEnd)return;
+  if(e.key=="ArrowLeft"&&t.selectionStart>0)return;
+  if(e.key=="ArrowRight"&&t.selectionEnd<t.value.length)return;
+  e.preventDefault();
+  if(e.key=="ArrowLeft"||e.key=="ArrowRight"){
+   const rowInputs=[...t.closest("tr").querySelectorAll("input.sc")];
+   const idx=rowInputs.indexOf(t)+(e.key=="ArrowRight"?1:-1);
+   if(rowInputs[idx]){rowInputs[idx].focus();rowInputs[idx].select()}
+   return;
+  }
+  const dir=e.key=="ArrowUp"?-1:1;
+  let i=+a.i+dir,n=null;
+  while(i>=0&&i<D().n&&!(n=$(`input[data-j="${a.j}"][data-i="${i}"][data-c="${a.c}"]`)))i+=dir;
+  if(n){n.focus();n.select()}
+ }
+ if(a&&a.c===undefined&&e.key=="Enter"){
+  if(t.id=="vn"){e.preventDefault();$("#vq").focus();$("#vq").select()}
+  else if(t.id=="vq"){e.preventDefault();addV()}
+ }
+ if(e.key=="Escape"){presClose();closeModal()}
+});
+
+function addV(){
+ const d=D(),i=parseInt($("#vn").value)-1,q=parseFloat($("#vq").value),r=Math.min(d.vrd||0,VNR()-1);
+ if(!(i>=0&&i<d.n)||!(q>0)){
+  askModal("ข้อมูลไม่ถูกต้อง",`กรุณากรอกหมายเลขผู้เข้าประกวด (1 ถึง ${d.n}) และจำนวนที่มากกว่า 0`,()=>{$("#vn").focus()},true);
+  return;
+ }
+ d.vlog.push({i,q,r,ts:Date.now()});
+ save();
+ toast(`บันทึก หมายเลข ${i+1} (+${q} ${d.vu||"ดอก"})${VNR()>1?` ในรอบที่ ${r+1}`:""} เรียบร้อย`);
+ renderMain();
+ renderLive();
+ const vnEl=$("#vn");
+ if(vnEl)vnEl.focus();
+}
+function undoV(q){D().vlog.splice(q,1);save();renderMain();renderLive();toast("ลบรายการเรียบร้อย")}
+function setVNR(v){
+ const d=D();
+ d.vnr=Math.max(1,Math.min(10,parseInt(v)||1));
+ if(d.vrd>=d.vnr)d.vrd=d.vnr-1;
+ if(d.vrv>=d.vnr)d.vrv=-1;
+ save();
+ render();
+}
+function clearVoteRound(r){
+ askModal("ยืนยันการล้างยอดดอกไม้",`ต้องการล้างยอดบันทึกดอกไม้เฉพาะ "รอบที่ ${r+1}" ทั้งหมดหรือไม่?`,()=>{
+  D().vlog=D().vlog.filter(e=>(e.r??0)!=r);
+  save();render();toast(`ล้างยอดรอบที่ ${r+1} เรียบร้อย`);
+ });
+}
+function clearJudge(j,rd){
+ askModal("ยืนยันการล้างคะแนน",`ต้องการล้างคะแนนของ "${jn(j)}" ในรอบที่ ${rd+1} หรือไม่?`,()=>{
+  const d=D();
+  for(let i=0;i<d.n;i++)delete d.sc[rd+"_"+j+"_"+i];
+  save();render();toast("ล้างคะแนนกรรมการเรียบร้อย");
+ });
+}
+function setNJ(v){D().nj=Math.max(1,Math.min(15,parseInt(v)||1));S.tab="set";save();render()}
+function setNR(v){D().nr=Math.max(1,Math.min(5,parseInt(v)||1));S.rd=0;S.rv=-1;S.tab="set";save();render()}
+function setN(v){const n=Math.max(1,Math.min(100,parseInt(v)||1)),d=D();while(d.names.length<n)d.names.push("");d.n=n;save();render()}
+function addCriterion(){
+ const d=D(),idx=d.cr.length+1;
+ if(idx>10){toast("รองรับสูงสุด 10 หัวข้อเกณฑ์",true);return}
+ d.cr.push(`เกณฑ์การประเมินข้อที่ ${idx}`);
+ d.sh.push(`หัวข้อที่ ${idx}`);
+ d.act.forEach(row=>row.push(1));
+ save();render();
+}
+function removeCriterion(){
+ const d=D();
+ if(d.cr.length<=1)return;
+ d.cr.pop();d.sh.pop();
+ d.act.forEach(row=>row.pop());
+ if(d.tb>=d.cr.length)d.tb=-1;
+ save();render();
+}
+function addContestType(){
+ const id="c"+Date.now().toString(36).slice(-4);
+ const idx=CFG().keys.length+1;
+ S.d[id]=fresh(id,`การประกวดประเภทที่ ${idx}`,`ประเภทที่ ${idx}`);
+ CFG().keys.push(id);
+ S.cur=id;S.tab="set";S.rd=0;S.rv=-1;
+ save();render();toast("เพิ่มประเภทการประกวดใหม่เรียบร้อย");
+}
+function delContestType(){
+ if(CFG().keys.length<=1)return;
+ const curTitle=CUR_TITLE();
+ askModal("ยืนยันการลบประเภทการประกวด",`ต้องการลบ "${curTitle}" และข้อมูลคะแนนในประเภทนี้ทั้งหมดหรือไม่?`,()=>{
+  const k=S.cur;
+  CFG().keys=CFG().keys.filter(x=>x!=k);
+  delete S.d[k];
+  S.cur=CFG().keys[0];
+  S.tab="set";S.rd=0;S.rv=-1;
+  save();render();toast("ลบประเภทการประกวดเรียบร้อย");
+ });
+}
+function resetC(){
+ askModal("ยืนยันการล้างข้อมูลคะแนน",`ต้องการล้างคะแนนและผลโหวตทั้งหมดของ "${CUR_TITLE()}" หรือไม่?\n(แนะนำให้กดสำรองข้อมูลไฟล์ JSON ก่อนล้าง)`,()=>{
+  const d=D();d.sc={};d.votes={};d.vlog=[];d.manElig={};d.tbOrder={};d.votePick=-1;save();render();toast("ล้างข้อมูลคะแนนเรียบร้อย");
+ });
+}
+function resetAllFactory(){
+ askModal("คืนค่าเริ่มต้นโรงงาน","ต้องการรีเซ็ตการตั้งค่าและข้อมูลทั้งหมดกลับเป็นค่าเริ่มต้น (อบต.หนองปลาหมอ) หรือไม่?",()=>{
+  localStorage.removeItem(KEY);
+  S=null;
+  initState();
+  render();
+  toast("คืนค่าเริ่มต้นเรียบร้อย");
+ });
+}
+
+function dl(name,text,type){
+ const a=document.createElement("a");
+ a.href=URL.createObjectURL(new Blob(Array.isArray(text)?text:[text],{type}));
+ a.download=name;
+ a.click();
+}
+function csv(){
+ const d=D();
+ if(FV()){
+  const F=calc().s.filter(x=>x.fin),own=d.tot,rows=[["อันดับ","หมายเลข","ชื่อ",...(own?rng(NJ()).map(jcol):SH_LIST()),"รวม"]];
+  F.forEach(x=>rows.push([x.rank,x.i+1,d.names[x.i]||"",...(own?x.js:x.fc||[]).map(t=>t??""),x.sum]));
+  dl("ผลรอบสุดท้าย_"+CUR_SHORT()+".csv","\ufeff"+rows.map(r=>r.map(t=>'"'+String(t).replace(/"/g,'""')+'"').join(",")).join("\n"),"text/csv");
+  return;
+ }
+ const sg=st(),v=rv(),[a,b]=sg>=0?[0,sg]:rr(),{s}=calc(a,b),single=sg<0&&(v>=0||NR()==1),EG=sg>=0?elig(sg+1):null;
+ const rows=[["อันดับ","หมายเลข","ชื่อ",...(single?rng(NJ()).map(jcol):rng(b-a+1).map(q=>"รอบที่ "+(a+q+1))),"รวม",...(sg>=0?["ผลคัดเลือก"]:[])]];
+ s.forEach(x=>rows.push([x.cnt?x.rank:"",x.i+1,d.names[x.i]||"",...(single?x.js:x.pr).map(t=>t??""),x.sum,...(sg>=0?[EG&&EG.has(x.i)?"เข้ารอบ":"ตกรอบ"]:[])]));
+ dl("ผลคะแนน_"+CUR_SHORT()+".csv","\ufeff"+rows.map(r=>r.map(t=>'"'+String(t).replace(/"/g,'""')+'"').join(",")).join("\n"),"text/csv");
+}
+function csvVote(){
+ const d=D(),vnr=VNR(),u=d.vu||"ดอก";
+ const rows=[["อันดับ","หมายเลข","ชื่อ",...(vnr>1?rng(vnr).map(r=>`รอบที่ ${r+1} (${u})`):[]),`รวมทั้งหมด (${u})`]];
+ const T=rng(d.n).map(i=>vtot(i,-1)),order=rng(d.n).sort((x,y)=>T[y]-T[x]||x-y),rk=[];
+ order.forEach((i,q)=>{rk[i]=q&&T[order[q-1]]==T[i]?rk[order[q-1]]:q+1});
+ order.forEach(i=>rows.push([T[i]>0?rk[i]:"",i+1,d.names[i]||"",...(vnr>1?rng(vnr).map(r=>vtot(i,r)):[]),T[i]]));
+ dl("ผล"+(d.voteTab||"ขวัญใจประชาชน")+"_"+CUR_SHORT()+".csv","\ufeff"+rows.map(r=>r.map(t=>'"'+String(t).replace(/"/g,'""')+'"').join(",")).join("\n"),"text/csv");
+}
+function backup(){dl("สำรองคะแนนประกวด.json",JSON.stringify(S,null,2),"application/json")}
+function restore(inp){
+ const f=inp.files[0];if(!f)return;
+ const r=new FileReader();
+ r.onload=()=>{
+  try{
+   const o=JSON.parse(r.result);
+   if(!o.d)throw 0;
+   S=o;
+   initState();
+   render();
+   toast("นำเข้าข้อมูลเรียบร้อย");
+  }catch(e){
+   askModal("ไฟล์ไม่ถูกต้อง","ไม่สามารถอ่านไฟล์สำรองข้อมูลนี้ได้ กรุณาตรวจสอบไฟล์ .json อีกครั้ง",null,true);
+  }
+  inp.value="";
+ };
+ r.readAsText(f);
+}
+
+function presOpen(){S.pstep=0;$("#pres").classList.add("show");renderPres()}
+function presClose(){$("#pres").classList.remove("show")}
+function presNext(){const pz=CUR_PRIZES().length;S.pstep=Math.min(pz,S.pstep+1);renderPres()}
+function renderPres(){
+ const d=D(),c=CFG(),{s}=calc(),prizes=CUR_PRIZES(),pz=prizes.length,top=s.slice(0,pz);
+ let h=`<h1>${esc(CUR_TITLE())}</h1><div class="sub">${esc(c.org)} · ${esc(c.ev)} ประจำปีงบประมาณ พ.ศ. ${esc(c.fy)}</div>`;
+ if(!allDone())h+=`<div class="warn" style="color:#222">กรรมการกรอกคะแนนยังไม่ครบ ผลนี้ยังไม่ใช่ผลสุดท้าย</div>`;
+ if(top.some(x=>x.tie))h+=`<div class="warn" style="color:#222">มีคะแนนเท่ากันในอันดับที่ได้รับรางวัล ให้คณะกรรมการวินิจฉัยก่อนประกาศ</div>`;
+ prizes.forEach((pName,p)=>{
+  const x=top[p],open=S.pstep>=pz-p&&x&&x.cnt>0;
+  h+=`<div class="slot ${open?"open":""}"><span>${esc(pName)}${open?`<small>หมายเลข ${x.i+1}${d.names[x.i]?" · "+esc(d.names[x.i]):""}</small>`:""}</span><span>${open?`หมายเลข ${x.i+1} · ${x.sum} คะแนน`:"?"}</span></div>`;
+ });
+ if(d.hasVote&&S.pstep>=pz){
+  const T=rng(d.n).map(i=>vtot(i,-1)),mx=Math.max(0,...T);
+  if(mx>0){
+   let t=rng(d.n).filter(i=>T[i]==mx);
+   if(t.length>1&&d.votePick>=0&&t.includes(d.votePick))t=[d.votePick];
+   h+=`<div class="slot open"><span>${esc(d.voteTab||"ขวัญใจประชาชน")}${t.length==1&&d.names[t[0]]?`<small>${esc(d.names[t[0]])}</small>`:""}</span><span>หมายเลข ${t.map(i=>i+1).join(", ")} · ${mx} ${esc(d.vu||"ดอก")}</span></div>`;
+  }
+ }
+ h+=`<div class="row" style="margin-top:8px">`;
+ if(S.pstep<pz)h+=`<button class="gold" onclick="presNext()">เปิดรางวัลอันดับที่ ${thn(pz-S.pstep)} (${esc(prizes[pz-1-S.pstep])})</button>`;
+ if(S.pstep>0)h+=`<button onclick="S.pstep=0;renderPres()" style="background:transparent;color:#fff;border-color:#ffffff66;font-size:18px">รีเซ็ตการเปิด</button>`;
+ h+=`<button onclick="presClose()" style="background:transparent;color:#fff;border-color:#ffffff66;font-size:18px">ปิดหน้าจอ (Esc)</button></div>`;
+ $("#pres").innerHTML=h;
+}
+
+/* ---- ระบบพิมพ์ใบรวมคะแนนและส่งออก Word (.docx) ฟอนต์สารบัญไทย ขนาด 16 พ้อยท์ ---- */
+function updateSheetCss(){
+ const c=CFG(),f=c.pFont||"TH Sarabun New",sz=c.pSize||16;
+ $("#sheetcss").textContent=`.pg{font-family:"${f}","TH Sarabun New","TH SarabunIT๙","TH SarabunPSK","Sarabun",Tahoma,sans-serif;font-size:${sz}pt;color:#000;page-break-after:always}
+.pg:last-child{page-break-after:auto}
+table.st{border-collapse:collapse;width:100%;table-layout:fixed;font-family:"${f}","TH Sarabun New","TH SarabunIT๙","TH SarabunPSK","Sarabun",Tahoma,sans-serif;font-size:${sz}pt}
+table.st td,table.st th{border:1px solid #000;padding:3px 4px;text-align:center;vertical-align:middle;line-height:1.2;font-size:inherit}
+table.st td.l{text-align:left}
+table.st th.tt{font-size:${sz}pt;padding:6px 4px;line-height:1.35}
+table.st tr.dr td{height:1cm}
+table.sg{border-collapse:collapse;width:100%;margin-top:18px;font-family:"${f}","TH Sarabun New","TH SarabunIT๙","TH SarabunPSK","Sarabun",Tahoma,sans-serif;font-size:${sz}pt}
+table.sg td{border:0;text-align:center;padding:6px 10px;vertical-align:top;width:50%;font-size:${sz}pt}
+@page{size:A4 landscape;margin:2.0cm 1.25cm}`;
+}
+
+const sTitle=(pre,post)=>{
+ const c=CFG();
+ return [
+  `${pre}${CUR_DOC()}${post||""} ${c.proj} ประจำปีงบประมาณ พ.ศ. ${c.fy}`,
+  `${c.org} ${c.loc}   ${c.dtLong}`
+ ];
+};
+function remk(cIdx){
+ const rs=rng(NR()).filter(q=>D().act[q]&&D().act[q][cIdx]).map(q=>q+1);
+ return NR()>1&&rs.length?"รอบที่ "+rs.join(","):"";
+}
+function sData(title,val,tot,mc,mt,extra){
+ const d=D(),n=d.n,nc=NC(),rm=rng(nc).map(remk);
+ const rows=rng(nc).map(cIdx=>{
+  let rem=null;
+  if(rm[cIdx]){
+   if(cIdx==0||rm[cIdx]!=rm[cIdx-1]){
+    let sp=1;while(cIdx+sp<nc&&rm[cIdx+sp]==rm[cIdx])sp++;
+    rem={t:rm[cIdx],span:sp};
+   }else rem={cont:1};
+  }
+  return{no:cIdx+1,name:CR_LIST()[cIdx],mc,vals:rng(n).map(i=>val(i,cIdx)),rem};
+ });
+ return{title,n,rows,mt,tot:rng(n).map(tot),extra};
+}
+function sHtml(g){
+ const n=g.n,c=CFG(),baseSz=c.pSize||16;
+ const fs=c.pAutoFit?(n>16?13:n>13?14:baseSz):baseSz;
+ let h=`<table class="st" style="font-size:${fs}pt"><colgroup><col style="width:4%"><col style="width:24%"><col style="width:6%">${rng(n).map(()=>`<col style="width:${(57/n).toFixed(2)}%">`).join("")}<col style="width:9%"></colgroup><tr><th class="tt" colspan="${n+4}">${g.title.map(esc).join("<br>")}</th></tr><tr><th>ที่</th><th>เกณฑ์การประเมิน</th><th>คะแนน</th>${rng(n).map(i=>`<th>${i+1}</th>`).join("")}<th>หมายเหตุ</th></tr>`;
+ g.rows.forEach(r=>{
+  h+=`<tr class="dr"><td>${r.no}</td><td class="l">${esc(r.name)}</td><td>${r.mc}</td>${r.vals.map(v=>`<td>${esc(v)}</td>`).join("")}${!r.rem?"<td></td>":r.rem.cont?"":`<td rowspan="${r.rem.span}">${esc(r.rem.t)}</td>`}</tr>`;
+ });
+ h+=`<tr class="dr"><th colspan="2">รวมคะแนน</th><th>${g.mt}</th>${g.tot.map(v=>`<td><b>${esc(v)}</b></td>`).join("")}<td></td></tr>`;
+ if(g.extra)h+=`<tr class="dr"><th colspan="3">${esc(g.extra.label)}</th>${g.extra.cells.map(v=>`<td>${esc(v)}</td>`).join("")}<td></td></tr>`;
+ return h+"</table>";
+}
+function sigRows(js){
+ if(js.length==1)return[[js[0]]];
+ const r=[[0]];
+ for(let j=1;j<NJ();j+=2)r.push(j+1<NJ()?[j,j+1]:[j]);
+ return r;
+}
+const sigLine=j=>`(ลงชื่อ)…………………………………………${jtitle(j)}`;
+const sigName=j=>D().jp[j]||" ".repeat(34);
+function sigHtml(js){
+ const c=j=>`${esc(sigLine(j))}<br>(${D().jp[j]?esc(D().jp[j]):"&nbsp;".repeat(34)})`;
+ return `<table class="sg">${sigRows(js).map((r,x)=>`<tr><td${r.length==1&&js.length>1&&x==0?' colspan="2"':''}>${c(r[0])}</td>${r.length==2?`<td>${c(r[1])}</td>`:(js.length>1&&x>0?"<td></td>":"")}</tr>`).join("")}</table>`;
+}
+const rndHas=r=>rng(D().n).some(i=>rng(NJ()).some(j=>{const c=cell(j,i,r);return c.t!=null||c.c.some(v=>v!=null)}));
+function combSheet(r){
+ const d=D(),rows=calc(r,r).r,E=elig(r),K=KK(),act=AC(r),mc=fm(PJ()*NJ()*K);
+ const val=(i,cIdx)=>{
+  if(!act.includes(cIdx)||d.tot||(E&&!E.has(i)))return"";
+  let t=0,n=0;
+  rng(NJ()).forEach(j=>{const v=cell(j,i,r).c[cIdx];if(v!=null){t+=v;n++}});
+  return n?fm(t*K):"";
+ };
+ return sData(sTitle(`ใบรวมคะแนน (รอบที่ ${r+1}) เกณฑ์การตัดสิน`),val,i=>rows[i].cnt?rows[i].sum:"",mc,fm(mc*NC()));
+}
+function judgeSheet(j,r,blank){
+ const d=D(),E=elig(r),act=AC(r);
+ const val=(i,cIdx)=>{
+  if(blank||!act.includes(cIdx)||d.tot||(E&&!E.has(i)))return"";
+  return cell(j,i,r).c[cIdx]??"";
+ };
+ const tot=i=>{
+  if(blank||(E&&!E.has(i)))return"";
+  return ctot(cell(j,i,r),r)??"";
+ };
+ return sData(sTitle("เกณฑ์การตัดสิน",` (รอบที่ ${r+1})`),val,tot,fm(PJ()),fm(PJ()*NC()));
+}
+const finOK=()=>NR()>1&&!D().tot&&D().fin=="five"&&lastStarted();
+function finalSheet(){
+ const d=D(),{s}=calc(),K=KK(),F=rng(d.n).map(five),mc=fm(PJ()*NJ()*K),nc=NC();
+ const has=(i,cIdx)=>rng(NR()).some(q=>d.act[q]&&d.act[q][cIdx]&&rng(NJ()).some(j=>cell(j,i,q).c[cIdx]!=null));
+ const val=(i,cIdx)=>has(i,cIdx)?fm(F[i].fc[cIdx]*K):"";
+ const tot=i=>rng(nc).some(cIdx=>has(i,cIdx))?fm(F[i].t*K):"";
+ const rk=i=>{const x=s.find(y=>y.i==i);return x.fin?x.rank:(x.out?"ตกรอบ":"")};
+ return sData(sTitle(`ใบรวมคะแนน (รอบที่ 1-${NR()}) เกณฑ์การตัดสิน`),val,tot,mc,fm(mc*nc),{label:"อันดับ",cells:rng(d.n).map(rk)});
+}
+function pagesList(inc){
+ const pg=[];
+ rng(NR()).forEach(r=>{
+  if(!rndHas(r))return;
+  if(inc)rng(NJ()).forEach(j=>pg.push({g:judgeSheet(j,r,false),js:[j]}));
+  pg.push({g:combSheet(r),js:rng(NJ())});
+ });
+ if(finOK())pg.push({g:finalSheet(),js:rng(NJ())});
+ if(!pg.length){
+  const r=S.rd||0;
+  if(inc)rng(NJ()).forEach(j=>pg.push({g:judgeSheet(j,r,true),js:[j]}));
+  pg.push({g:combSheet(r),js:rng(NJ())});
+ }
+ return pg;
+}
+function buildSheets(inc){
+ const p=pagesList(inc);
+ return p.map(x=>`<div class="pg">${sHtml(x.g)}${sigHtml(x.js)}</div>`).join("");
+}
+function printSheets(){
+ updateSheetCss();
+ $("#pp").innerHTML=buildSheets(!!S.incJ);
+ document.body.classList.add("sheets");
+ try{window.print()}finally{document.body.classList.remove("sheets")}
+}
+function printBlankJudge(j,r){
+ updateSheetCss();
+ $("#pp").innerHTML=`<div class="pg">${sHtml(judgeSheet(j,r,true))}${sigHtml([j])}</div>`;
+ document.body.classList.add("sheets");
+ try{window.print()}finally{document.body.classList.remove("sheets")}
+}
+function printBlankAll(r){
+ updateSheetCss();
+ $("#pp").innerHTML=rng(NJ()).map(j=>`<div class="pg">${sHtml(judgeSheet(j,r,true))}${sigHtml([j])}</div>`).join("");
+ document.body.classList.add("sheets");
+ try{window.print()}finally{document.body.classList.remove("sheets")}
+}
+
+/* ---- สร้างไฟล์ Word (.docx) ฟอนต์สารบัญไทย ขนาด 16 พ้อยท์ (32 half-points) ---- */
+const X=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+function crc32(u){const t=crc32.t||(crc32.t=Array.from({length:256},(_,n)=>{let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;return c>>>0}));let r=-1;for(let i=0;i<u.length;i++)r=t[(r^u[i])&255]^(r>>>8);return(r^-1)>>>0}
+function zip(files){
+ const enc=new TextEncoder(),u16=v=>[v&255,(v>>8)&255],u32=v=>[v&255,(v>>8)&255,(v>>16)&255,(v>>>24)&255],parts=[],cd=[];let off=0;
+ files.forEach(f=>{const nm=enc.encode(f.name),data=enc.encode(f.data),crc=crc32(data),sz=data.length;
+  const lh=[...u32(0x04034b50),...u16(20),...u16(0x0800),...u16(0),...u16(0),...u16(0x21),...u32(crc),...u32(sz),...u32(sz),...u16(nm.length),...u16(0)];
+  parts.push(new Uint8Array(lh),nm,data);
+  cd.push(new Uint8Array([...u32(0x02014b50),...u16(20),...u16(20),...u16(0x0800),...u16(0),...u16(0),...u16(0x21),...u32(crc),...u32(sz),...u32(sz),...u16(nm.length),...u16(0),...u16(0),...u16(0),...u16(0),...u32(0),...u32(off)]),nm);
+  off+=lh.length+nm.length+sz});
+ const cs=cd.reduce((a,b)=>a+b.length,0);
+ return[...parts,...cd,new Uint8Array([...u32(0x06054b50),...u16(0),...u16(0),...u16(files.length),...u16(files.length),...u32(cs),...u32(off),...u16(0)])];
+}
+const wP=(t,o={})=>{
+ const hp=o.sz||((CFG().pSize||16)*2);
+ return `<w:p><w:pPr><w:spacing w:before="${o.b||0}" w:after="${o.a||0}"/><w:jc w:val="${o.jc||"center"}"/></w:pPr>${t===""?"":`<w:r><w:rPr>${o.bold?"<w:b/><w:bCs/>":""}<w:sz w:val="${hp}"/><w:szCs w:val="${hp}"/></w:rPr><w:t xml:space="preserve">${X(t)}</w:t></w:r>`}</w:p>`;
+};
+const wC=(w,inner,o={})=>`<w:tc><w:tcPr><w:tcW w:w="${w}" w:type="dxa"/>${o.span?`<w:gridSpan w:val="${o.span}"/>`:""}${o.vm?`<w:vMerge${o.vm=="r"?' w:val="restart"':""}/>`:""}${o.nw?"<w:noWrap/>":""}<w:vAlign w:val="center"/></w:tcPr>${inner||wP("")}</w:tc>`;
+const wR=(h,cells)=>`<w:tr><w:trPr><w:cantSplit/><w:trHeight w:val="${h}" w:hRule="atLeast"/></w:trPr>${cells}</w:tr>`;
+const BD=["top","left","bottom","right","insideH","insideV"].map(x=>`<w:${x} w:val="single" w:sz="4" w:space="0" w:color="000000"/>`).join("");
+
+function dxSheet(g){
+ const n=g.n,c=CFG(),baseHp=(c.pSize||16)*2;
+ const sz=c.pAutoFit?(n>16?26:n>13?28:baseHp):baseHp;
+ const cw=Math.floor(9720/n),W=[500,3300,800,...Array(n).fill(cw),1100],T=W.reduce((a,b)=>a+b,0);
+ const pp=(t,o={})=>wP(t,{sz,...o});
+ let x=`<w:tbl><w:tblPr><w:tblW w:w="${T}" w:type="dxa"/><w:jc w:val="center"/><w:tblBorders>${BD}</w:tblBorders><w:tblLayout w:type="fixed"/><w:tblCellMar><w:left w:w="40" w:type="dxa"/><w:right w:w="40" w:type="dxa"/></w:tblCellMar></w:tblPr><w:tblGrid>${W.map(w=>`<w:gridCol w:w="${w}"/>`).join("")}</w:tblGrid>`;
+ x+=wR(340,wC(T,g.title.map(t=>pp(t,{bold:1,b:40,a:40,sz:baseHp})).join(""),{span:n+4}));
+ x+=wR(420,wC(W[0],pp("ที่",{bold:1}))+wC(W[1],pp("เกณฑ์การประเมิน",{bold:1}))+wC(W[2],pp("คะแนน",{bold:1}))+rng(n).map(i=>wC(cw,pp(String(i+1),{bold:1}))).join("")+wC(W[W.length-1],pp("หมายเหตุ",{bold:1})));
+ g.rows.forEach(r=>{
+  x+=wR(480,wC(W[0],pp(String(r.no)))+wC(W[1],pp(r.name,{jc:"left"}))+wC(W[2],pp(String(r.mc)))+r.vals.map(v=>wC(cw,pp(String(v)),{nw:1})).join("")+(!r.rem?wC(W[W.length-1],""):wC(W[W.length-1],r.rem.cont?"":pp(r.rem.t),{vm:r.rem.cont?"c":"r"})));
+ });
+ x+=wR(480,wC(W[0]+W[1],pp("รวมคะแนน",{bold:1}),{span:2})+wC(W[2],pp(String(g.mt),{bold:1}))+g.tot.map(v=>wC(cw,pp(String(v),{bold:1}),{nw:1})).join("")+wC(W[W.length-1],""));
+ if(g.extra)x+=wR(480,wC(W[0]+W[1]+W[2],pp(g.extra.label,{bold:1}),{span:3})+g.extra.cells.map(v=>wC(cw,pp(String(v)))).join("")+wC(W[W.length-1],""));
+ return x+"</w:tbl>";
+}
+function dxSig(js){
+ const H=7710,hp=(CFG().pSize||16)*2,t=j=>wP(sigLine(j),{sz:hp,b:100})+wP("("+sigName(j)+")",{sz:hp}),rows=sigRows(js);
+ let x=`<w:tbl><w:tblPr><w:tblW w:w="${H*2}" w:type="dxa"/><w:jc w:val="center"/><w:tblLayout w:type="fixed"/></w:tblPr><w:tblGrid><w:gridCol w:w="${H}"/><w:gridCol w:w="${H}"/></w:tblGrid>`;
+ rows.forEach((r,i)=>{x+=wR(340,js.length==1||(i==0)?wC(H*2,t(r[0]),{span:2}):wC(H,t(r[0]))+(r[1]!=null?wC(H,t(r[1])):wC(H,"")))});
+ return x+"</w:tbl>";
+}
+function docxFile(inc){
+ const pg=pagesList(inc),brk=`<w:p><w:r><w:br w:type="page"/></w:r></w:p>`,c=CFG(),F=c.pFont||"TH Sarabun New",hp=(c.pSize||16)*2;
+ const body=(pg.length?pg.map(p=>dxSheet(p.g)+wP("",{sz:16})+dxSig(p.js)).join(brk):wP("ยังไม่มีคะแนนให้พิมพ์"))+wP("")+`<w:sectPr><w:pgSz w:w="16838" w:h="11906" w:orient="landscape"/><w:pgMar w:top="1000" w:right="709" w:bottom="1000" w:left="709" w:header="709" w:footer="709" w:gutter="0"/></w:sectPr>`;
+ const H='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>',NS='xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"';
+ return zip([
+  {name:"[Content_Types].xml",data:H+'<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/></Types>'},
+  {name:"_rels/.rels",data:H+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>'},
+  {name:"word/_rels/document.xml.rels",data:H+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>'},
+  {name:"word/styles.xml",data:H+`<w:styles ${NS}><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="${X(F)}" w:hAnsi="${X(F)}" w:cs="${X(F)}" w:eastAsia="${X(F)}"/><w:sz w:val="${hp}"/><w:szCs w:val="${hp}"/><w:lang w:val="en-US" w:bidi="th-TH"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:after="0" w:line="240" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults><w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/></w:style></w:styles>`},
+  {name:"word/document.xml",data:H+`<w:document ${NS}><w:body>${body}</w:body></w:document>`}
+ ]);
+}
+function exportDoc(){dl("ใบรวมคะแนน_"+CUR_SHORT()+".docx",docxFile(!!S.incJ),"application/vnd.openxmlformats-officedocument.wordprocessingml.document")}
+
+render();
+</script>
+</body>
+</html>
